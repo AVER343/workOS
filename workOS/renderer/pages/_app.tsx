@@ -7,7 +7,6 @@ function App({
     Component,
     pageProps,
 }: AppProps) {
-
     return <NextUIProvider> <Component {...pageProps} /></NextUIProvider>
 }
 export default wrapper.withRedux(App);
