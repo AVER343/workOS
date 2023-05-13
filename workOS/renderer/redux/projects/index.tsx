@@ -6,7 +6,7 @@ import { Database } from "../../utils/db";
 import intiatives from "../intiatives";
 
 let db = new Database();
-let DB_INSTANCE = await db.initializeModels();
+let DB_INSTANCE = await db.InitiativeModels();
 
 // Type for our state
 export interface projects {

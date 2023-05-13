@@ -3,9 +3,10 @@ import { AppState } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
 import { I_InitiativesModel, I_ProjectModel } from "../../utils/db/interfaces";
 import { Database } from "../../utils/db";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 let db = new Database();
-let DB_INSTANCE = await db.initializeModels();
+let DB_INSTANCE = await db.InitiativeModels();
 
 // Type for our state
 export interface initiatives {
@@ -24,8 +25,10 @@ export const InitiativeSlice = createSlice({
   reducers: {
     getAllInitiatives(state) {
       state.initiatives = DB_INSTANCE.initiative.adapter.read();
+      console.trace("hello");
     },
     createInitiative(state, action) {
+      console.trace("CREATE")
       let initiatives = DB_INSTANCE.initiative.adapter.read();
       state.initiatives = [...initiatives, action.payload];
       DB_INSTANCE.initiative.adapter.write(state.initiatives);
@@ -49,8 +52,27 @@ export const InitiativeSlice = createSlice({
         DB_INSTANCE.projects.adapter.write([...projects]);
       }
     },
+    editInitiative(state, action: { payload: I_InitiativesModel }) {
+      try {
+        let initiatives = DB_INSTANCE.initiative.adapter.read();
+        const intiative = initiatives.findIndex(
+          (initiative) => initiative.id == action.payload.id
+        );
+        console.log({ initiatives, intiative })
+        if (intiative>=0) {
+          initiatives[intiative] = action.payload
+          state.initiatives = [...initiatives];
+          DB_INSTANCE.initiative.adapter.write([...initiatives]);
+        } else {
+          state.initiatives = [...initiatives, action.payload];
+          DB_INSTANCE.initiative.adapter.write(state.initiatives);
+        }
+      }
+      catch (e) {
+        console.log({ e })
+      }
+    },
   },
-
   // Special reducer for hydrating the state. Special case for next-redux-wrapper
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -61,9 +83,12 @@ export const InitiativeSlice = createSlice({
     },
   },
 });
-
-export const { createInitiative, deleteInitiative, getAllInitiatives } =
-  InitiativeSlice.actions;
+export const {
+  editInitiative,
+  createInitiative,
+  deleteInitiative,
+  getAllInitiatives,
+} = InitiativeSlice.actions;
 
 export const selectInitiativeState = (state: AppState) =>
   state.initiatives.initiatives;

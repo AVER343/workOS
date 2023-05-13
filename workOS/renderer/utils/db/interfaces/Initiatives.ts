@@ -1,8 +1,8 @@
 export interface I_InitiativesModel {
   created_at: string;
   modified_at: string;
-  title: String;
-  description: String;
+  title: string;
+  description: string;
   project_ids: string[];
   id: string;
 }

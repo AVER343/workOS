@@ -1,8 +1,8 @@
 [
   {
     "project_title": "Project Title",
-    "id": "1a06ea53-1574-44fa-b013-6a2281a066f9",
-    "initiative_id": "4d103321-66ae-4c07-868f-89271e806ca5",
+    "id": "28219bdc-a5b2-4f5d-80b6-b6d3e61e9dfe",
+    "initiative_id": "1d1a4c4e-dbd2-461a-9dff-3fd36f044fd3",
     "project_description": "",
     "project_objective": {
       "client": "",
@@ -12,63 +12,8 @@
   },
   {
     "project_title": "Project Title",
-    "id": "1aff595b-ce6a-41ac-a51d-1809bdbdddca",
-    "initiative_id": "4d103321-66ae-4c07-868f-89271e806ca5",
-    "project_description": "",
-    "project_objective": {
-      "client": "",
-      "internal": ""
-    },
-    "project_solution_ids": []
-  },
-  {
-    "project_title": "Project Title",
-    "id": "b57829e3-6141-459b-933c-acfaa5757983",
-    "initiative_id": "4d103321-66ae-4c07-868f-89271e806ca5",
-    "project_description": "",
-    "project_objective": {
-      "client": "",
-      "internal": ""
-    },
-    "project_solution_ids": []
-  },
-  {
-    "project_title": "Project Title",
-    "id": "695ba2bf-fa21-4098-a440-be0ddc9da951",
-    "initiative_id": "9cb02e6d-21a1-44e8-ae46-44f08161c8d4",
-    "project_description": "",
-    "project_objective": {
-      "client": "",
-      "internal": ""
-    },
-    "project_solution_ids": []
-  },
-  {
-    "project_title": "Project Title",
-    "id": "1ea7bd16-f4a7-41ce-889b-9d284182e4dd",
-    "initiative_id": "9cb02e6d-21a1-44e8-ae46-44f08161c8d4",
-    "project_description": "",
-    "project_objective": {
-      "client": "",
-      "internal": ""
-    },
-    "project_solution_ids": []
-  },
-  {
-    "project_title": "Project Title",
-    "id": "a4751577-c6ba-41ea-8c43-1d0fe94ccfb7",
-    "initiative_id": "12181e79-e520-44d4-84ac-1879a0097431",
-    "project_description": "",
-    "project_objective": {
-      "client": "",
-      "internal": ""
-    },
-    "project_solution_ids": []
-  },
-  {
-    "project_title": "Project Title",
-    "id": "f95e985f-69ca-4116-873a-9213a13782bf",
-    "initiative_id": "12181e79-e520-44d4-84ac-1879a0097431",
+    "id": "4db723d9-e429-4dca-b691-2fa242ffdb13",
+    "initiative_id": "1d1a4c4e-dbd2-461a-9dff-3fd36f044fd3",
     "project_description": "",
     "project_objective": {
       "client": "",

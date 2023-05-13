@@ -4,17 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createInitiative,
   deleteInitiative,
+  editInitiative,
   getAllInitiatives,
 } from "../../redux/intiatives";
 import { AppState } from "../../redux/store";
 import { I_InitiativesModel } from "../../utils/db/interfaces";
 import { Button } from "@nextui-org/react";
-import { v4 as uuidv4 } from "uuid";
 import ProjectListComponent from "../../component/projects/project-list.component";
 import { Database } from "../../utils/db";
 import HomeListComponent from "../../component/home/home-list.component";
 import { useRouter } from "next/router";
 import PaginationComponent from "../../component/pagination";
+import EditInitializeModal from "../../component/modal/initiative_modal/edit.modal";
+import { CreateInitiative } from "../../component/home/edit-initiative.component";
 function HomeContainer() {
   const initiatives = useSelector(
     (state: AppState) => state.initiatives.initiatives
@@ -29,34 +31,17 @@ function HomeContainer() {
   useEffect(() => {
     dispatch(getAllInitiatives());
   }, []);
+  function onEdit(initiative_new: I_InitiativesModel) {
+    dispatch(editInitiative(initiative_new));
+  }
   return (
     <>
-      <Button
-        onPress={() => {
-          handleCreate({
-            created_at: new Date().toString(),
-            modified_at: new Date().toString(),
-            title: uuidv4(),
-            description: "description",
-            project_ids: [],
-            id: uuidv4(),
-          });
-        }}
-      >
-        CREATE NEW
-      </Button>
-
+      <CreateInitiative onEdit={onEdit} handleCreate={handleCreate} />
       <HomeListComponent
+        onEdit={onEdit}
         deleteInititive={handleDelete}
         initiatives={initiatives}
       />
-      <Button
-        onClick={() => {
-          handleDelete(initiatives[0].id);
-        }}
-      >
-        DELETE
-      </Button>
     </>
   );
 }

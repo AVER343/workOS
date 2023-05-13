@@ -1,9 +1,16 @@
 import { app } from 'electron';
 import serve from 'electron-serve';
+import {REDUX_DEVTOOLS} from 'electron-devtools-installer'
 import { createWindow } from './helpers';
 import { Database } from '../renderer/utils/db';
 const isProd: boolean = process.env.NODE_ENV === 'production';
+const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
+app.whenReady().then(() => {
+    installExtension(REDUX_DEVTOOLS,REACT_DEVELOPER_TOOLS,)
+        .then((name) => console.log(`Added Extension:  ${name}`))
+        .catch((err) => console.log('An error occurred: ', err));
+});
 if (isProd) {
   serve({ directory: 'app' });
 } else {
