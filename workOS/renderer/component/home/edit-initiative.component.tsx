@@ -2,11 +2,11 @@ import { Button, Container, Text } from "@nextui-org/react";
 import { I_InitiativesModel } from "../../utils/db/interfaces";
 
 import { v4 as uuidv4 } from "uuid";
-import EditInitiativeModal from "../modal/initiative_modal/edit.modal";
+import EditInitiativeModal from "../modal/initiative/initiative-edit.modal";
 import { useState } from "react";
 export function CreateInitiative(props: {
   handleCreate: (project: I_InitiativesModel) => void;
-  onEdit:any
+  onEdit: any;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (

@@ -10,10 +10,13 @@ import {
   Grid,
 } from "@nextui-org/react";
 import React, { ReactNode } from "react";
-import { I_InitiativesModel } from "../../../utils/db/interfaces";
+import {
+  I_InitiativesModel,
+  I_ProjectModel,
+} from "../../../utils/db/interfaces";
 import { FaTrash } from "react-icons/fa";
 
-export function InitiativeModalComponent({
+export function DeleteModalComponent({
   onClose,
   onDelete,
   isModalOpen,
@@ -23,7 +26,7 @@ export function InitiativeModalComponent({
   onClose?: () => {};
   onDelete?: any;
   isModalOpen: boolean;
-  initiative: I_InitiativesModel;
+  initiative: I_InitiativesModel | I_ProjectModel;
 }) {
   return (
     <>
@@ -34,10 +37,6 @@ export function InitiativeModalComponent({
         open={isModalOpen}
         onClose={onClose}
       >
-        {/* <Modal.Header></Modal.Header> */}
-        {/* <Modal.Body>
-          <Container justify="center"></Container>
-        </Modal.Body> */}
         <div id="myModal" className="modal fade">
           <div className="modal-dialog modal-confirm">
             <div className="modal-content">

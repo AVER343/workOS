@@ -60,6 +60,28 @@ export const projectsSlice = createSlice({
         DB_INSTANCE.projects.adapter.write([...data]);
       }
     },
+    editProject(state, action: { payload: I_ProjectModel }) {
+      let projects = DB_INSTANCE.projects.adapter.read();
+      const intiative = projects.findIndex(
+        (project) => project.id == action.payload.id
+      );
+      if (intiative >= 0) {
+        projects[intiative] = action.payload;
+        let pI = state.projects.findIndex(
+          (project) => project.id == action.payload.id
+        );
+        state.projects.splice(pI, 1);
+        state.projects = [
+          ...state.projects.slice(0, pI),
+          action.payload,
+          ...state.projects.slice(pI),
+        ];
+        DB_INSTANCE.projects.adapter.write([...projects]);
+      } else {
+        state.projects = [...state.projects, action.payload];
+        DB_INSTANCE.projects.adapter.write(state.projects);
+      }
+    },
   },
 
   // Special reducer for hydrating the state. Special case for next-redux-wrapper
@@ -73,7 +95,7 @@ export const projectsSlice = createSlice({
   },
 });
 
-export const { getAllProjects, deleteProject, createProject } =
+export const { editProject, getAllProjects, deleteProject, createProject } =
   projectsSlice.actions;
 
 export const selectProjectsState = (state: AppState) => state.projects.projects;

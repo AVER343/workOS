@@ -4,11 +4,11 @@ import { I_InitiativesModel } from "../../utils/db/interfaces";
 import ItemComponent from "./item.component";
 import ScaleWrapper from "../wrapper/scale";
 import { CloseBadgeComponent } from "../badge/close";
-import { InitiativeModalComponent } from "../modal/initiative_modal/delete.modal";
+import { DeleteModalComponent } from "../modal/common_modals/delete.modal";
 function HomeListComponent(props: {
   initiatives: I_InitiativesModel[];
   deleteInititive: (id: string) => void;
-  onEdit: any
+  onEdit: any;
 }) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +16,7 @@ function HomeListComponent(props: {
     <Grid.Container gap={4} justify="center">
       <Grid>
         {isModalOpen && (
-          <InitiativeModalComponent
+          <DeleteModalComponent
             isModalOpen={isModalOpen}
             onClose={async () => {
               setIsModalOpen(false);

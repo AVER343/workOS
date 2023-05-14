@@ -2,9 +2,9 @@ import { Button, Card, Grid, Link, Text } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import React, { ReactNode, useState } from "react";
 import { I_InitiativesModel } from "../../utils/db/interfaces";
-import EditInitiativeModal from "../modal/initiative_modal/edit.modal";
+import EditInitiativeModal from "../modal/initiative/initiative-edit.modal";
 
-function ItemComponent(props: { initiative: I_InitiativesModel ,onEdit:any}) {
+function ItemComponent(props: { initiative: I_InitiativesModel; onEdit: any }) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
@@ -12,6 +12,7 @@ function ItemComponent(props: { initiative: I_InitiativesModel ,onEdit:any}) {
       {isModalOpen && (
         <EditInitiativeModal
           isNew={false}
+          setIsModalOpen={setIsModalOpen}
           initiative={props.initiative}
           isModalOpen={isModalOpen}
           onEdit={props.onEdit}
@@ -44,14 +45,11 @@ function ItemComponent(props: { initiative: I_InitiativesModel ,onEdit:any}) {
                 {props.initiative.title}
               </Text>
             </Grid>
-            <Grid xs={12}>
-            </Grid>
+            <Grid xs={12}></Grid>
           </Grid.Container>
         </Card.Header>
         <Card.Body css={{ py: "$2" }}>
-          <Text>
-            {props.initiative.description}
-          </Text>
+          <Text>{props.initiative.description}</Text>
         </Card.Body>
         <Card.Footer style={{ justifyContent: "flex-end" }}>
           <Button

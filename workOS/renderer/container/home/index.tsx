@@ -15,7 +15,6 @@ import { Database } from "../../utils/db";
 import HomeListComponent from "../../component/home/home-list.component";
 import { useRouter } from "next/router";
 import PaginationComponent from "../../component/pagination";
-import EditInitializeModal from "../../component/modal/initiative_modal/edit.modal";
 import { CreateInitiative } from "../../component/home/edit-initiative.component";
 function HomeContainer() {
   const initiatives = useSelector(
