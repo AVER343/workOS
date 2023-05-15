@@ -32,7 +32,6 @@ export function CreateInitiative(props: {
         onPress={() => {
           setIsModalOpen(true);
         }}
-        style={{ marginTop: "10px" }}
       >
         <span className="material-icons">add_circle</span>
         <Text color="white">New Initiative</Text>

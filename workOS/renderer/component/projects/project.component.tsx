@@ -4,15 +4,22 @@ import { I_ProjectModel } from "../../utils/db/interfaces";
 import EditModal from "../modal/common_modals/edit.modal";
 import { ModalFormComponent } from "../modal/common_modals/forms/form";
 import EditProjectModal from "../modal/projects/project-edit.modal";
+import { useRouter } from "next/router";
 function ProjectComponent(props: {
   project: I_ProjectModel;
   onSave: any;
   isNew: boolean;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
   const [selectedProject, setSelectedProject] = useState(null);
   return (
-    <Card isPressable isHoverable css={{ w: "250px", h: "350px" }}>
+    <Card
+      isPressable
+      onPress={() => router.push(`/projects/${props.project.id}`)}
+      isHoverable
+      css={{ w: "250px", h: "350px" }}
+    >
       {isModalOpen && (
         <EditProjectModal
           isModalOpen={isModalOpen}
