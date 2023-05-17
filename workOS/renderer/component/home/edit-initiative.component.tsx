@@ -10,7 +10,7 @@ export function CreateInitiative(props: {
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <Container justify="flex-end">
+    <>
       {isModalOpen && (
         <EditInitiativeModal
           onEdit={props.onEdit}
@@ -36,6 +36,6 @@ export function CreateInitiative(props: {
         <span className="material-icons">add_circle</span>
         <Text color="white">New Initiative</Text>
       </Button>
-    </Container>
+    </>
   );
 }

@@ -1,0 +1,77 @@
+[
+  {
+    "table_id": "1",
+    "headers": {
+      "rowId": "1",
+      "cells": [
+        {
+          "type": "header",
+          "text": "Name 1"
+        },
+        {
+          "type": "header",
+          "text": "Surname"
+        },
+        {
+          "type": "header",
+          "text": "Birth Data"
+        },
+        {
+          "type": "header",
+          "text": "Phone"
+        },
+        {
+          "type": "header",
+          "text": "Company"
+        },
+        {
+          "type": "header",
+          "text": "Occupation"
+        },
+        {
+          "type": "header",
+          "text": "Week 1"
+        }
+      ]
+    },
+    "rows": [],
+    "columns": [
+      {
+        "columnId": "Name 1",
+        "width": 150,
+        "id": "1"
+      },
+      {
+        "columnId": "Surname",
+        "width": 100,
+        "id": "1"
+      },
+      {
+        "columnId": "Birth Data",
+        "width": 100,
+        "id": "1"
+      },
+      {
+        "columnId": "Phone",
+        "width": 100,
+        "id": "1"
+      },
+      {
+        "columnId": "Company",
+        "width": 150,
+        "id": "1"
+      },
+      {
+        "columnId": "Occupation",
+        "width": 230,
+        "id": "1"
+      },
+      {
+        "columnId": "Week 1",
+        "width": 230,
+        "id": "1"
+      }
+    ],
+    "data": []
+  }
+]

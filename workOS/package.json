@@ -14,6 +14,7 @@
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.12",
     "@reduxjs/toolkit": "^1.9.5",
+    "@silevis/reactgrid": "^4.0.4",
     "@types/istanbul-lib-coverage": "^2.0.4",
     "@types/istanbul-lib-report": "^3.0.0",
     "@types/istanbul-reports": "^3.0.1",
@@ -31,6 +32,7 @@
     "next-themes": "^0.2.1",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
+    "react-spreadsheet": "^0.8.3",
     "tailwind-variants": "^0.1.5",
     "uuid": "^9.0.0"
   },

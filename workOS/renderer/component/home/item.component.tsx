@@ -12,7 +12,6 @@ function ItemComponent(props: { initiative: I_InitiativesModel; onEdit: any }) {
       {isModalOpen && (
         <EditInitiativeModal
           isNew={false}
-          setIsModalOpen={setIsModalOpen}
           initiative={props.initiative}
           isModalOpen={isModalOpen}
           onEdit={props.onEdit}
@@ -23,6 +22,7 @@ function ItemComponent(props: { initiative: I_InitiativesModel; onEdit: any }) {
         onPress={() => {
           router.push(`/initiatives/${props.initiative.id}`);
         }}
+        variant="shadow"
         isPressable
         isHoverable
         css={{

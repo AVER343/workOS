@@ -7,6 +7,7 @@ import {
   I_MembersModel,
   I_ProjectModel,
   I_SolutionsModel,
+  I_SolutionTableModel,
 } from "./interfaces";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,6 +15,7 @@ type Initiative_Data = I_InitiativesModel[];
 type Projects_Data = I_ProjectModel[];
 type Solutions_Data = I_SolutionsModel[];
 type Members_Data = I_MembersModel[];
+type Solution_Data = I_SolutionTableModel[];
 const __dirname = dirname(fileURLToPath(import.meta.url));
 class LowWithLodash<T> extends LowSync<T> {
   chain: lodash.ExpChain<this["data"]> = lodash.chain(this).get("data");
@@ -22,6 +24,7 @@ export class Database {
   initiative: LowWithLodash<Initiative_Data>;
   projects: LowWithLodash<Projects_Data>;
   solutions: LowWithLodash<Solutions_Data>;
+  solutionTable: LowWithLodash<Solution_Data>;
   members: LowWithLodash<Members_Data>;
   static file = (dbName: string): string =>
     join(__dirname, `../../../data/${dbName}.json`);
@@ -36,6 +39,9 @@ export class Database {
     const SolutionsAdapter = new JSONFileSync<Solutions_Data>(
       Database.file(`solutions`)
     );
+    const SolutionAdapter = new JSONFileSync<Solution_Data>(
+      Database.file(`solution_table`)
+    );
     const MembersAdapter = new JSONFileSync<Members_Data>(
       Database.file(`members`)
     );
@@ -43,6 +49,7 @@ export class Database {
       IntitiativeAdapter,
       []
     );
+    this.solutionTable = new LowWithLodash<Solution_Data>(SolutionAdapter, []);
     this.projects = new LowWithLodash<Projects_Data>(ProjectsAdapter, []);
     this.solutions = new LowWithLodash<Solutions_Data>(SolutionsAdapter, []);
     this.members = new LowWithLodash<Members_Data>(MembersAdapter, []);

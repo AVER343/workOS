@@ -24,24 +24,15 @@
     "project_url": ""
   },
   {
-    "initiative_id": "7eb3e328-f749-4f6f-8e59-68060af5b1c9",
-    "project_title": "Title",
-    "project_description": "Description",
+    "initiative_id": "97c48341-01a8-4367-9faa-4067edd4e5ba",
+    "project_title": "",
+    "project_description": "",
     "project_objective": {
       "client": "",
       "internal": ""
     },
-    "project_solution_ids": [
-      "id = d146207e-3ba8-42ae-a12b-03347d76f487",
-      "id = 18305dcc-eca2-4f20-ab20-2195c2f28d8d",
-      "id = 1fa6cb9c-72bb-4118-8890-c5ea919acf66",
-      "id = 2281df89-f138-4e80-962c-28738fe923ac",
-      "id = 72218742-3357-4809-942c-f9418746ee5e",
-      "id = b64b66d8-3757-4b1b-893f-c88a6869df51",
-      "id = 91a4bbc6-e306-4880-92ff-9f009fd818bd"
-    ],
-    "id": "65326e1f-2a88-4f0e-9383-683950d1d829",
-    "project_url": "Project URL",
-    "project_overview": "Overview"
+    "project_solution_ids": ["ce55e0c8-5e44-4c66-bd8b-9c58e32d56db"],
+    "id": "d90a99be-b6da-4c06-8108-dbf2913b4be5",
+    "project_url": ""
   }
 ]

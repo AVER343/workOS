@@ -1,3 +1,13 @@
 @tailwind components;
 @tailwind utilities;
 @import "material-icons/iconfont/material-icons.css";
+.rg-celleditor {
+  box-sizing: border-box;
+  z-index: 5;
+  box-shadow: 1px 1px 1px rgb(0 0 0 / 6%);
+  display: flex;
+  border-style: solid;
+  border-color: #3579f8;
+  border-width: 1px;
+  padding: 0 0px;
+}

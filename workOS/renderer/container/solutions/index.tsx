@@ -41,8 +41,9 @@ function SolutionsContainer() {
             solution: {
               created_on: new Date().toDateString(),
               title: "title = " + randomUUID(),
-              id: "id = " + randomUUID(),
+              id: randomUUID(),
               overvew: "Overview",
+              data: [],
             },
             project_id:
               typeof router.query.project_id == "string" &&
@@ -52,7 +53,15 @@ function SolutionsContainer() {
       >
         Create
       </Button>
-      {JSON.stringify(solutions)}
+      {solutions.map((e) => (
+        <p
+          onClick={() =>
+            router.push(`/projects/${router.query.project_id}/solution/${e.id}`)
+          }
+        >
+          {JSON.stringify(e)}
+        </p>
+      ))}
     </>
   );
 }
