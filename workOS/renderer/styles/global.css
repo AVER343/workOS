@@ -10,4 +10,8 @@
   border-color: #3579f8;
   border-width: 1px;
   padding: 0 0px;
+   text-align: !important center;
+}
+.rg-nonEditableNumber-cell.disabled{
+ background-color:#ededed
 }

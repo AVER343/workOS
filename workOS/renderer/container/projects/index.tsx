@@ -31,7 +31,7 @@ function ProjectContainer() {
   }, [router.route]);
   return (
     <>
-      <Button onPress={() => router.back()}>BACK</Button>
+      <Button onPress={() => router.push('/home')}>BACK</Button>
       <CreateProject handleCreate={handleCreate} router={router} />
 
       <ProjectListComponent

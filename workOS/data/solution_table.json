@@ -1,77 +1,892 @@
 [
   {
-    "table_id": "1",
-    "headers": {
-      "rowId": "1",
-      "cells": [
-        {
-          "type": "header",
-          "text": "Name 1"
-        },
-        {
-          "type": "header",
-          "text": "Surname"
-        },
-        {
-          "type": "header",
-          "text": "Birth Data"
-        },
-        {
-          "type": "header",
-          "text": "Phone"
-        },
-        {
-          "type": "header",
-          "text": "Company"
-        },
-        {
-          "type": "header",
-          "text": "Occupation"
-        },
-        {
-          "type": "header",
-          "text": "Week 1"
-        }
-      ]
-    },
-    "rows": [],
     "columns": [
       {
-        "columnId": "Name 1",
-        "width": 150,
-        "id": "1"
+        "columnId": "begin-column-id",
+        "width": 150
       },
       {
-        "columnId": "Surname",
-        "width": 100,
-        "id": "1"
+        "columnId": "89c9b651-7d08-438a-80ce-f5685d030375",
+        "id": "89c9b651-7d08-438a-80ce-f5685d030375",
+        "width": 150
       },
       {
-        "columnId": "Birth Data",
-        "width": 100,
-        "id": "1"
+        "columnId": "91ac4fb0-d7f9-44e4-99ce-1ee6f4911871",
+        "id": "91ac4fb0-d7f9-44e4-99ce-1ee6f4911871",
+        "width": 150
       },
       {
-        "columnId": "Phone",
-        "width": 100,
-        "id": "1"
+        "columnId": "42bcf687-a8e8-4463-bfdf-c36b05608696",
+        "id": "42bcf687-a8e8-4463-bfdf-c36b05608696",
+        "width": 150
       },
       {
-        "columnId": "Company",
-        "width": 150,
-        "id": "1"
+        "columnId": "24c5913d-2bc0-4d22-b06c-ff20c46ed107",
+        "id": "24c5913d-2bc0-4d22-b06c-ff20c46ed107",
+        "width": 150
       },
       {
-        "columnId": "Occupation",
-        "width": 230,
-        "id": "1"
+        "columnId": "52c2139c-5d31-49d0-83d7-4b103b42e8d3",
+        "id": "52c2139c-5d31-49d0-83d7-4b103b42e8d3",
+        "width": 150
       },
       {
-        "columnId": "Week 1",
-        "width": 230,
-        "id": "1"
+        "columnId": "45981691-a8ac-4fa6-afd2-853a37bf843e",
+        "id": "45981691-a8ac-4fa6-afd2-853a37bf843e",
+        "width": 150
+      },
+      {
+        "columnId": "b348057c-1934-43cb-b0cb-c52836399b9e",
+        "width": 250
+      },
+      {
+        "columnId": "f32223bf-3706-4499-992c-77e57e881afc",
+        "id": "f32223bf-3706-4499-992c-77e57e881afc",
+        "width": 150
+      },
+      {
+        "columnId": "02b76dff-451f-4ef6-abf7-44047d28fe03",
+        "id": "02b76dff-451f-4ef6-abf7-44047d28fe03",
+        "width": 150
+      },
+      {
+        "columnId": "dff8c2d5-a97b-4bd3-9b8b-8ecdd7360f05",
+        "id": "dff8c2d5-a97b-4bd3-9b8b-8ecdd7360f05",
+        "width": 150
+      },
+      {
+        "columnId": "05fde6c0-1335-4cc7-8736-34d7688c211a",
+        "id": "05fde6c0-1335-4cc7-8736-34d7688c211a",
+        "width": 150
+      },
+      {
+        "columnId": "0e18d71f-e2da-4a4a-a7bc-a859a299f35d",
+        "id": "0e18d71f-e2da-4a4a-a7bc-a859a299f35d",
+        "width": 150
+      },
+      {
+        "columnId": "5d94d3ea-d898-477a-b5e6-d809a429ea69",
+        "id": "5d94d3ea-d898-477a-b5e6-d809a429ea69",
+        "width": 150
+      },
+      {
+        "columnId": "8c224d0b-51ce-4c43-8639-f312dc131097",
+        "id": "8c224d0b-51ce-4c43-8639-f312dc131097",
+        "width": 150
+      },
+      {
+        "columnId": "fe0aed53-47fb-475f-943a-8bf103fe4f2b",
+        "id": "fe0aed53-47fb-475f-943a-8bf103fe4f2b",
+        "width": 150
+      },
+      {
+        "columnId": "362f0cb7-e17a-4eb6-a94f-0747b9b49cec",
+        "id": "362f0cb7-e17a-4eb6-a94f-0747b9b49cec",
+        "width": 150
+      },
+      {
+        "columnId": "2020",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q1",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q1-01",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q1-02",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q1-03",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q2",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q3",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q3-07",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q3-08",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q3-09",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q4",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q4-10",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q4-11",
+        "width": 100
+      },
+      {
+        "columnId": "2020-Q4-12",
+        "width": 100
+      },
+      {
+        "columnId": "2021",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q1",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q1-01",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q1-02",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q1-03",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q2",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q2-04",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q2-05",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q2-06",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q3",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q3-07",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q3-08",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q3-09",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q4",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q4-10",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q4-11",
+        "width": 100
+      },
+      {
+        "columnId": "2021-Q4-12",
+        "width": 100
       }
     ],
-    "data": []
+    "rows": [
+      {
+        "rowId": "topHeader",
+        "cells": [
+          {
+            "type": "text",
+            "text": "",
+            "columnId": "begin-column-id",
+            "isResizable": true
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "89c9b651-7d08-438a-80ce-f5685d030375",
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "91ac4fb0-d7f9-44e4-99ce-1ee6f4911871",
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "42bcf687-a8e8-4463-bfdf-c36b05608696",
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "b348057c-1934-43cb-b0cb-c52836399b9e",
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "52c2139c-5d31-49d0-83d7-4b103b42e8d3",
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "24c5913d-2bc0-4d22-b06c-ff20c46ed107",
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "45981691-a8ac-4fa6-afd2-853a37bf843e",
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "2020",
+            "className": "year header",
+            "hasChildren": true,
+            "isExpanded": false,
+            "columnId": "2020",
+            "isResizable": true,
+            "value": null
+          },
+          {
+            "type": "text",
+            "text": "Week",
+            "hasChildren": false,
+            "isExpanded": false,
+            "columnId": "f32223bf-3706-4499-992c-77e57e881afc",
+            "value": null,
+            "isResizable": true
+          }
+        ]
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Team",
+            "className": "year header",
+            "hasChildren": true,
+            "isExpanded": false
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          }
+        ],
+        "rowId": "77145e01-714e-4791-9a0b-5116e28f616a"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Member",
+            "className": "",
+            "isExpanded": false,
+            "hasChildren": false,
+            "parentId": "77145e01-714e-4791-9a0b-5116e28f616a",
+            "indent": 1
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          }
+        ],
+        "rowId": "85058420-8adc-42da-a42d-4f8e44a37fa9"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Member",
+            "className": "",
+            "isExpanded": false,
+            "hasChildren": false,
+            "parentId": "77145e01-714e-4791-9a0b-5116e28f616a",
+            "indent": 1
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          }
+        ],
+        "rowId": "a6a2e577-b244-49c3-bb3a-c2e3e66022c0"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Team",
+            "className": "year header",
+            "hasChildren": true,
+            "isExpanded": false
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": "disabled"
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          }
+        ],
+        "rowId": "9d1d69e5-305b-44ef-886c-288e32d1c4e4"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Member",
+            "className": "",
+            "isExpanded": false,
+            "hasChildren": false,
+            "parentId": "9d1d69e5-305b-44ef-886c-288e32d1c4e4",
+            "indent": 1
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          }
+        ],
+        "rowId": "97ca104a-9278-4857-9784-3d2c8e6a7ef0"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Team",
+            "className": "year header",
+            "hasChildren": true,
+            "isExpanded": true,
+            "value": null,
+            "indent": 0
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          },
+          {
+            "type": "nonEditableNumber",
+            "value": "",
+            "className": ""
+          }
+        ],
+        "rowId": "203541d4-aab1-48f5-9a1c-47bafab8414a"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Member",
+            "className": "",
+            "isExpanded": false,
+            "hasChildren": false,
+            "parentId": "203541d4-aab1-48f5-9a1c-47bafab8414a",
+            "indent": 1
+          },
+          {
+            "type": "text",
+            "text": "asdasd",
+            "className": "",
+            "value": null,
+            "placeholder": ""
+          },
+          {
+            "type": "text",
+            "text": "asdads",
+            "className": "",
+            "value": null,
+            "placeholder": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          }
+        ],
+        "rowId": "16f0c4f9-33cd-4a19-8b69-f8249d5622d6"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Member",
+            "className": "",
+            "isExpanded": false,
+            "hasChildren": false,
+            "parentId": "203541d4-aab1-48f5-9a1c-47bafab8414a",
+            "indent": 1
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          }
+        ],
+        "rowId": "5281af24-fc46-45f8-8353-ce2c17dd92aa"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Member",
+            "className": "",
+            "isExpanded": false,
+            "hasChildren": false,
+            "parentId": "203541d4-aab1-48f5-9a1c-47bafab8414a",
+            "indent": 1
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          }
+        ],
+        "rowId": "2a1f3838-c836-44dd-94b7-b3efd44d40b5"
+      },
+      {
+        "cells": [
+          {
+            "type": "chevron",
+            "text": "Member",
+            "className": "",
+            "isExpanded": false,
+            "hasChildren": false,
+            "parentId": "203541d4-aab1-48f5-9a1c-47bafab8414a",
+            "indent": 1
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          },
+          {
+            "type": "text",
+            "text": "",
+            "className": ""
+          }
+        ],
+        "rowId": "07bd6353-b79a-4a51-aff8-c8e00b77e4ad"
+      }
+    ],
+    "table_id": "1"
   }
 ]

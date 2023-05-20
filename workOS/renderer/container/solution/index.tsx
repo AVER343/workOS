@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import solutions, {
+import {
   getAllSolutions,
   createSolution,
 } from "../../redux/solutions";
@@ -9,9 +9,11 @@ import { Button } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { I_SolutionsModel } from "../../utils/db/interfaces";
 import { randomUUID } from "crypto";
+import { getAllInitiatives } from "../../redux/intiatives";
 function SolutionsContainer() {
   const router = useRouter();
   const solutions = useSelector((state: AppState) => state.solutions.solutions);
+  const projects = useSelector((state: AppState) => state.projects.projects);
   const dispatch = useDispatch();
   const handleCreate = ({
     project_id,
@@ -22,19 +24,20 @@ function SolutionsContainer() {
   }) => {
     dispatch(createSolution({ project_id, solution }));
   };
-  // const handleDelete = (id: string) => {
-  //   dispatch(deleteProject(id));
-  // };
-  // const handleEdit = (obj: I_ProjectModel) => {
-  //   dispatch(editProject(obj));
-  // };
   useEffect(() => {
-    if (typeof router.query.project_id == "string")
+    if (typeof router.query.project_id == "string") {
       dispatch(getAllSolutions({ project_id: router.query.project_id }));
-  }, [router.route]);
+      dispatch(getAllInitiatives());
+    }
+  }, [router.query.project_id]);
   return (
     <>
-      <Button onPress={() => router.back()}>BACK</Button>
+      <Button onPress={() => {
+        console.log();
+        router.push(`/initiatives/${projects.find(project => project.id == router.query.project_id).initiative_id}`);
+      }}>
+        BACK
+      </Button>
       <Button
         onPress={() => {
           handleCreate({
