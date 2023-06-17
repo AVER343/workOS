@@ -29,7 +29,7 @@ export class Database {
   static file = (dbName: string): string =>
     join(__dirname, `../../../data/${dbName}.json`);
 
-  async InitiativeModels() {
+  InitiativeModels() {
     const IntitiativeAdapter = new JSONFileSync<Initiative_Data>(
       Database.file(`initiative`)
     );
@@ -54,6 +54,7 @@ export class Database {
     this.solutions = new LowWithLodash<Solutions_Data>(SolutionsAdapter, []);
     this.members = new LowWithLodash<Members_Data>(MembersAdapter, []);
     this.generateFiles();
+
     return this;
   }
   async generateFiles() {

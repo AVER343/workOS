@@ -8,5 +8,17 @@ export interface I_SolutionTableModel {
 }
 
 export interface CustomColumn extends Column {
-  id: UUID;
+
+    readonly id: string;
+    readonly columnId: string;
+    /** Width of each grid column (in default set to `150px`) */
+    readonly width?: number;
+    /** Allow column to change its position in grid,
+     * default: `false` (row reorder implementation is on the developers side)
+     */
+    readonly reorderable?: boolean;
+    /** Allow column to change is width in grid,
+     * default: `false` (row resize implementation is on the developers side)
+     */
+    readonly resizable?: boolean;
 }

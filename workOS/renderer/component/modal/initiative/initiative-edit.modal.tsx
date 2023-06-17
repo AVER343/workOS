@@ -1,4 +1,4 @@
-import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react";
+import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react"
 import React, { useState } from "react";
 import { I_InitiativesModel } from "../../../utils/db/interfaces";
 import { ModalFormComponent } from "../common_modals/forms/form";
@@ -30,7 +30,7 @@ function EditinitiativeModal({
     <>
       {isModalOpen && (
         <EditModal
-          heading={isNew ? `Create new project` : `Update an existing Project`}
+          heading={isNew ? `Create new Initiative` : `Update an existing Initiative`}
           isModalOpen={isModalOpen}
           onClose={async () => onClose()}
           isNew={isNew}

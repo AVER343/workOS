@@ -3,5 +3,6 @@ export interface I_SolutionsModel {
   title: string;
   overvew: any;
   id: string;
-  data: string[];
+  project_id: string;
+  table_id: string[];
 }

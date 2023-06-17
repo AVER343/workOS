@@ -5,6 +5,7 @@ import EditModal from "../modal/common_modals/edit.modal";
 import { ModalFormComponent } from "../modal/common_modals/forms/form";
 import EditProjectModal from "../modal/projects/project-edit.modal";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 function ProjectComponent(props: {
   project: I_ProjectModel;
   onSave: any;
@@ -12,87 +13,66 @@ function ProjectComponent(props: {
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-  const [selectedProject, setSelectedProject] = useState(null);
   return (
-    <Card
-      isPressable
-      onPress={() => router.push(`/projects/${props.project.id}`)}
-      isHoverable
-      css={{ w: "250px", h: "350px" }}
-    >
+    <>
       {isModalOpen && (
         <EditProjectModal
+          isNew={false}
+          project={props.project}
           isModalOpen={isModalOpen}
-          onClose={async () => setIsModalOpen(false)}
-          isNew={props.isNew}
           onSave={props.onSave}
-          project={selectedProject}
+          onClose={async () => setIsModalOpen(false)}
         />
       )}
-      <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-        <Col>
-          <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-            {props.project.project_title}
-          </Text>
-          <Text h3 color="black">
-            {props.project.project_description}
-          </Text>
-        </Col>
-      </Card.Header>
-      <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src="https://nextui.org/images/card-example-6.jpeg"
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          alt="Card example background"
-        />
-      </Card.Body>
-      <Card.Footer
-        isBlurred
+      <Card
+        variant="shadow"
+        isPressable
+        isHoverable
+        onPress={() => {
+          router.push(`/projects/${props.project.id}`);
+        }}
         css={{
-          position: "absolute",
-          bgBlur: "#ffffff66",
-          borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-          bottom: 0,
-          zIndex: 1,
+          width: "300px",
+          height: "200px",
+          minHeight: "200px",
+          mw: "330px",
+          minWidth: "stretch",
         }}
       >
-        <Row>
-          <Col>
-            <Text color="#000" size={12}>
-              {props.project.project_url}
-            </Text>
-            <Text color="#000" size={12}>
-              {props.project.id}
-            </Text>
-          </Col>
-          <Col>
-            <Row justify="flex-end">
-              <Button
-                onPress={async () => {
-                  await setSelectedProject(props.project);
-                  setIsModalOpen(true);
-                }}
-                flat
-                auto
-                rounded
-                color="secondary"
-              >
-                <Text
-                  css={{ color: "inherit" }}
-                  size={12}
-                  weight="bold"
-                  transform="uppercase"
-                >
-                  Edit Me
-                </Text>
-              </Button>
-            </Row>
-          </Col>
-        </Row>
-      </Card.Footer>
-    </Card>
+        <Card.Header>
+          <Text b>
+            {props.project.project_title
+              ? props.project.project_title
+              : `Card Title`}
+          </Text>
+        </Card.Header>
+        <Card.Divider />
+        <Card.Body>
+          <Text>
+            {props.project.project_description
+              ? `${
+                  props.project.project_description.length > 92
+                    ? props.project.project_description.slice(0, 92) + " ..."
+                    : props.project.project_description
+                }`
+              : "Some quick example text to build on the card title and make up the bulk of the card's content."}
+          </Text>
+        </Card.Body>
+        <Card.Divider />
+        <Card.Footer>
+          <Row justify="flex-end">
+            <Button
+              color={"secondary"}
+              ghost
+              onPress={() => setIsModalOpen(true)}
+              size="sm"
+            >
+              Edit
+            </Button>
+          </Row>
+        </Card.Footer>
+      </Card>
+    </>
   );
 }
 

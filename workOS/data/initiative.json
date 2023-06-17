@@ -1,10 +1,13 @@
 [
   {
-    "created_at": "Wed May 17 2023 14:07:21 GMT+0530 (India Standard Time)",
-    "modified_at": "Wed May 17 2023 14:07:21 GMT+0530 (India Standard Time)",
-    "title": "Title",
-    "description": "",
-    "project_ids": ["d90a99be-b6da-4c06-8108-dbf2913b4be5"],
-    "id": "97c48341-01a8-4367-9faa-4067edd4e5ba"
+    "created_at": "Sat Jun 17 2023 13:33:56 GMT+0530 (India Standard Time)",
+    "modified_at": "Sat Jun 17 2023 13:33:56 GMT+0530 (India Standard Time)",
+    "title": "New Title",
+    "description": "Some quick example text to build on the card title and make up the\n            bulk of the card's content.",
+    "project_ids": [
+      "ec258914-c744-4697-a578-90ffd7fd0281",
+      "d4df91c7-3847-47e6-b74b-ea145920d59e"
+    ],
+    "id": "380284d1-cf96-4412-9517-0372db7e9e94"
   }
 ]

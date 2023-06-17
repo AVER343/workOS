@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, useInput, Grid, Spacer, Textarea } from "@nextui-org/react";
+import { Input, useInput, Grid, Spacer, Textarea } from "@nextui-org/react"
 import {
   I_InitiativesModel,
   I_ProjectModel,

@@ -1,12 +1,15 @@
 import type { NextPage } from "next";
-import React from "react";
+import React, { Suspense } from "react";
 import HomeContainer from "../container/home";
 import PaginationComponent from "../component/pagination";
-const Home: NextPage = () => {
+import LayoutContainer from "../layout";
+const Home: NextPage<{ parentUrl: string }> = ({ parentUrl }) => {
   return (
-    <React.Fragment>
-      <HomeContainer />
-    </React.Fragment>
+    <LayoutContainer parentUrl={""}>
+      <React.Fragment>
+        <HomeContainer />
+      </React.Fragment>
+    </LayoutContainer>
   );
 };
 

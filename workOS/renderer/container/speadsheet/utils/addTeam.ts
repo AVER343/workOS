@@ -18,7 +18,7 @@ export function addTeam(
       {
         type: "chevron",
         text: "Team",
-        className: "year header",
+        className: "team",
         hasChildren: true,
         isExpanded: false,
       },
@@ -30,7 +30,7 @@ export function addTeam(
     ],
     rowId: uuid,
   });
-  setRows(buildTree(newRows));
+  setRows(buildTree(JSON.parse(JSON.stringify(newRows))));
   return {
     newRows: newRows,
     newColumns: columns,

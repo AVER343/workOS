@@ -1,4 +1,4 @@
-import { Button, Container, Text } from "@nextui-org/react";
+import { Button, Container, Text } from "@nextui-org/react"
 import { I_InitiativesModel } from "../../utils/db/interfaces";
 
 import { v4 as uuidv4 } from "uuid";
@@ -20,8 +20,9 @@ export function CreateInitiative(props: {
           initiative={{
             created_at: new Date().toString(),
             modified_at: new Date().toString(),
-            title: "",
-            description: "",
+            title: `New Title`,
+            description: `Some quick example text to build on the card title and make up the
+            bulk of the card's content.`,
             project_ids: [],
             id: uuidv4(),
           }}

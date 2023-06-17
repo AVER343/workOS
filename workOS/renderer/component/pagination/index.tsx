@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination, Grid, Radio } from "@nextui-org/react";
+import { Pagination, Grid, Radio } from "@nextui-org/react"
 
 export default function PaginationComponent(props: {
   total: number;

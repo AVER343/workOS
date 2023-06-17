@@ -14,4 +14,5 @@ export const Routing = (route: NextRouter) => {
   } else if (currentRoute[0] == "projects") {
     console.log("projects");
   }
+  return currentRoute;
 };

@@ -2,12 +2,16 @@ import type { NextPage } from "next";
 import React, { useEffect } from "react";
 import ProjectContainer from "../../../container/projects";
 import { useRouter } from "next/router";
-const Home: NextPage = () => {
+import LayoutContainer from "../../../layout";
+const Home: NextPage = (props) => {
   return (
-    <React.Fragment>
+    <LayoutContainer
+      parentUrl={"/home"}
+      parentName={`Home`}
+      parentIcon={"home"}
+    >
       <ProjectContainer />
-    </React.Fragment>
+    </LayoutContainer>
   );
 };
-
 export default Home;

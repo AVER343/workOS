@@ -1,4 +1,4 @@
-import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react";
+import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react"
 import React, { ReactNode, useState } from "react";
 import {
   I_InitiativesModel,

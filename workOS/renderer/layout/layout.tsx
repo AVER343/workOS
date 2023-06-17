@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from "react";
-import HeaderComponent from "./header";
-import { Container, Row, Switch, useTheme } from "@nextui-org/react";
-import { MoonIcon } from "./icons/moon.icon";
-import { SunIcon } from "./icons/sun.icon";
-import { useTheme as useNextTheme } from "next-themes";
+import { Button, Container, Row, Spacer, Switch, useTheme } from "@nextui-org/react";
 import { useRouter } from "next/router";
-import { Routing } from "./routing";
-function LayoutComponent({ children }) {
-  const { setTheme } = useNextTheme();
-  const { theme } = useTheme();
+function LayoutComponent({ children, ...props }) {
   const router = useRouter();
-  const [isLight, setIsLight] = useState(true);
-  useEffect(() => {
-    const route = router;
-    Routing(route);
-  }, [router.asPath]);
+  const route = router;
+  console.log({ children, props });
   return (
     <Container
       style={{ maxWidth: "100vw" }}
@@ -24,30 +14,38 @@ function LayoutComponent({ children }) {
         padding: "$12",
       }}
     >
-      <Row justify="space-between">
-        {/* <Switch
-          checked={isLight}
-          size="xl"
-          onChange={(e) => {
-            {
-              setTheme(e.target.checked ? "light" : "dark");
-              setIsLight(!isLight);
-            }
-          }}
-          iconOn={<SunIcon filled />}
-          iconOff={<MoonIcon filled />}
-        />
-        <Switch
-          checked={isLight}
-          size="xl"
-          onChange={(e) => {
-            setTheme(e.target.checked ? "light" : "dark");
-            setIsLight(!isLight);
-          }}
-          iconOn={<SunIcon filled />}
-          iconOff={<MoonIcon filled />}
-        /> */}
+      <Row css={{ justifyContent: 'flex-end' }}>
+        {props.parentUrl && (
+          <>
+            <Row css={{ justifyContent: 'space-between' }}>
+              <Button
+                light
+                onPress={() => route.push(props.parentUrl)}
+                iconLeftCss={{ justifyContent: "center" }}
+                icon={
+                  <span className="material-icons">
+                    {props.parentIcon ?? "arrow_back"}
+                  </span>
+                }
+              >
+                {props.parentName}
+              </Button>
+            </Row>
+          </>
+        )}
+        <Button
+          light
+          onPress={() => route.push('/members')}
+          icon={
+            <span className="material-icons">
+              account_box
+            </span>
+          }
+        >
+          Members
+        </Button>
       </Row>
+      <Spacer />
       {children}
     </Container>
   );

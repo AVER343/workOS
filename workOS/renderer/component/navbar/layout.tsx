@@ -7,7 +7,7 @@ export const Layout = ({ children }) => (
     {children}
   </Box>
 );
-import { styled } from "@nextui-org/react";
+import { styled } from "@nextui-org/react"
 
 export const Box = styled("div", {
   boxSizing: "border-box",

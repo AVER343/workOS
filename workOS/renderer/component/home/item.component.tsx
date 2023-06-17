@@ -1,9 +1,10 @@
-import { Button, Card, Grid, Link, Text } from "@nextui-org/react";
+import { Button, Card, Grid, Link, Row, Spacer, Text } from "@nextui-org/react";
 import { useRouter } from "next/router";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { I_InitiativesModel } from "../../utils/db/interfaces";
 import EditInitiativeModal from "../modal/initiative/initiative-edit.modal";
-
+import { motion } from "framer-motion";
+const displayLetters = 80;
 function ItemComponent(props: { initiative: I_InitiativesModel; onEdit: any }) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,50 +20,50 @@ function ItemComponent(props: { initiative: I_InitiativesModel; onEdit: any }) {
         />
       )}
       <Card
-        onPress={() => {
-          router.push(`/initiatives/${props.initiative.id}`);
-        }}
         variant="shadow"
         isPressable
         isHoverable
+        onPress={() => {
+          router.push(`/initiatives/${props.initiative.id}`);
+        }}
         css={{
-          maxW: "max-content",
-          mw: "400px",
-          margin: "$6",
-          minWidth: "250px",
+          width: "300px",
+          height: "200px",
+          minHeight: "200px",
+          mw: "330px",
+          minWidth: "stretch",
         }}
       >
         <Card.Header>
-          <img
-            alt="nextui logo"
-            src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-            width="34px"
-            height="34px"
-          />
-          <Grid.Container css={{ pl: "$6" }}>
-            <Grid xs={12}>
-              <Text h4 css={{ lineHeight: "$xs" }}>
-                {props.initiative.title}
-              </Text>
-            </Grid>
-            <Grid xs={12}></Grid>
-          </Grid.Container>
+          <Text b>
+            {props.initiative.title ? props.initiative.title : `Card Title`}
+          </Text>
         </Card.Header>
-        <Card.Body css={{ py: "$2" }}>
-          <Text>{props.initiative.description}</Text>
+        <Card.Divider />
+        <Card.Body>
+          <Text>
+            {props.initiative.description
+              ? `${
+                  props.initiative.description.length > displayLetters
+                    ? props.initiative.description.slice(0, displayLetters) +
+                      " ..."
+                    : props.initiative.description
+                }`
+              : ""}
+          </Text>
         </Card.Body>
-        <Card.Footer style={{ justifyContent: "flex-end" }}>
-          <Button
-            style={{ width: "10%" }}
-            light
-            animated
-            rounded
-            bordered
-            onPress={() => setIsModalOpen(true)}
-            color={"primary"}
-          >
-            Edit
-          </Button>
+        <Card.Divider />
+        <Card.Footer>
+          <Row justify="flex-end">
+            <Button
+              color={"secondary"}
+              ghost
+              onPress={() => setIsModalOpen(true)}
+              size="sm"
+            >
+              Edit
+            </Button>
+          </Row>
         </Card.Footer>
       </Card>
     </>

@@ -13,6 +13,7 @@ import React, { ReactNode } from "react";
 import {
   I_InitiativesModel,
   I_ProjectModel,
+  I_SolutionsModel,
 } from "../../../utils/db/interfaces";
 import { FaTrash } from "react-icons/fa";
 
@@ -23,10 +24,10 @@ export function DeleteModalComponent({
   initiative,
 }: {
   children?: ReactNode;
-  onClose?: () => {};
+  onClose?: () => void;
   onDelete?: any;
   isModalOpen: boolean;
-  initiative: I_InitiativesModel | I_ProjectModel;
+  initiative: I_InitiativesModel | I_ProjectModel | I_SolutionsModel;
 }) {
   return (
     <>
@@ -67,7 +68,9 @@ export function DeleteModalComponent({
                     icon={<FaTrash color="white" />}
                     color="error"
                     size={"sm"}
-                    onClick={onDelete}
+                    onClick={() => {
+                      onDelete(initiative)
+                    }}
                   >
                     Delete
                   </Button>

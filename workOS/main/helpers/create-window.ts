@@ -74,6 +74,7 @@ export default (
   const browserOptions: BrowserWindowConstructorOptions = {
     ...state,
     ...options,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -81,7 +82,15 @@ export default (
     },
   };
   win = new BrowserWindow(browserOptions);
-
+  win.webContents.on("before-input-event", (event, input) => {
+    // Check for keyboard shortcuts that trigger a refresh
+    if (
+      (process.platform === "darwin" && input.meta && input.code === "KeyR") || // Mac: Cmd+R
+      (process.platform !== "darwin" && input.control && input.code === "KeyR") // Windows/Linux: Ctrl+R
+    ) {
+      event.preventDefault(); // Prevent the default refresh behavior
+    }
+  });
   win.on("close", saveState);
 
   return win;

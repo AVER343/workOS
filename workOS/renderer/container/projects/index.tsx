@@ -27,11 +27,11 @@ function ProjectContainer() {
     dispatch(editProject(obj));
   };
   useEffect(() => {
-    dispatch(getAllProjects({ initiative_id: router.query.initiative_id }));
-  }, [router.route]);
+    if (router.query.initiative_id)
+      dispatch(getAllProjects({ initiative_id: router.query.initiative_id }));
+  }, [router.asPath]);
   return (
     <>
-      <Button onPress={() => router.push('/home')}>BACK</Button>
       <CreateProject handleCreate={handleCreate} router={router} />
 
       <ProjectListComponent
