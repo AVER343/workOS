@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row, Spacer, Switch, useTheme } from "@nextui-org/react";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 function LayoutComponent({ children, ...props }) {
   const router = useRouter();
   const route = router;
@@ -46,7 +47,19 @@ function LayoutComponent({ children, ...props }) {
         </Button>
       </Row>
       <Spacer />
-      {children}
+      < motion.div
+        initial={{ x: 30, opacity: 0 }
+        }
+        animate={{ x:0, opacity: 1 }}
+        exit={{ x: 30, opacity: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+      >
+        {children}
+      </motion.div>
     </Container>
   );
 }

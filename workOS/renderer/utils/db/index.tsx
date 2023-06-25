@@ -16,18 +16,18 @@ type Projects_Data = I_ProjectModel[];
 type Solutions_Data = I_SolutionsModel[];
 type Members_Data = I_MembersModel[];
 type Solution_Data = I_SolutionTableModel[];
-const __dirname = dirname(fileURLToPath(import.meta.url));
 class LowWithLodash<T> extends LowSync<T> {
   chain: lodash.ExpChain<this["data"]> = lodash.chain(this).get("data");
 }
 export class Database {
+  static __dirname = dirname(fileURLToPath(import.meta.url));
   initiative: LowWithLodash<Initiative_Data>;
   projects: LowWithLodash<Projects_Data>;
   solutions: LowWithLodash<Solutions_Data>;
   solutionTable: LowWithLodash<Solution_Data>;
   members: LowWithLodash<Members_Data>;
   static file = (dbName: string): string =>
-    join(__dirname, `../../../data/${dbName}.json`);
+    join(Database.__dirname, `../../../data/${dbName}.json`);
 
   InitiativeModels() {
     const IntitiativeAdapter = new JSONFileSync<Initiative_Data>(

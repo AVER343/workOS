@@ -5,6 +5,7 @@ import {
   TotalCostToCompany_ID,
   TotalHours_ID,
 } from "../constants";
+import { ClassNames } from "@emotion/react";
 
 export function addToRight(
   columns: CustomColumn[],
@@ -23,27 +24,19 @@ export function addToRight(
   );
   let newRows: any[] = JSON.parse(JSON.stringify(rows)).map((row, index) => {
     let text = "";
+    let className = "";
     if (index == 0) {
       text = "Week";
+      className = "";
     }
     let _index = columns.findIndex(
       (column) => column.columnId == props[4][0][0].columnId
     );
-    let cell =
-      row.cells[0].className == 'team'
-        ? {
-            type: "nonEditableNumber",
-            value: "",
-            className: "disabled",
-          }
-        : {
-            type: "text",
-            text: text,
-            hasChildren: false,
-            isExpanded: false,
-            columnId: uuid,
-            value: null,
-          };
+    let cell: any = row.cells[0].className == "team" && {
+      type: "nonEditableNumber",
+      value: "",
+      className: "disabled",
+    };
     if (index == 0) {
       cell = {
         type: "text",
@@ -52,9 +45,9 @@ export function addToRight(
         isExpanded: false,
         columnId: uuid,
         value: null,
+        className: "",
       };
     }
-
     row.cells.splice(_index + 1, 0, cell);
 
     return {

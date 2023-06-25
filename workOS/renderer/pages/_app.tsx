@@ -36,9 +36,11 @@ function App({ Component, pageProps }: AppProps) {
             dark: darkTheme.className,
           }}
         >
-          <NextUIProvider>
+          <AnimatePresence mode="wait" initial={false}>
+            <NextUIProvider>
               <Component {...pageProps} />
-          </NextUIProvider>
+            </NextUIProvider>
+          </AnimatePresence>
         </NextThemesProvider>
       </ChakraProvider>
     </AnimatePresence>

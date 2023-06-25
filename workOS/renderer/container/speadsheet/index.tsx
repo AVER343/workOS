@@ -175,6 +175,8 @@ const ChevronCellExample: React.FunctionComponent = () => {
           customCellTemplates={{
             nonEditableNumber: NonEditableNumberCellTemplate,
           }}
+          enableRowSelection
+          enableColumnSelection
           onContextMenu={(...props) => {
             return getContextMenu(
               rowsToRender,

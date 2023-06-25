@@ -180,28 +180,28 @@ function SolutionsContainer() {
                           type: "text",
                           text: "Name",
                           columnId: "7822ef87-68a1-46ef-9c52-684bce887bf3",
-
+                          
                           value: null,
                         },
                         {
                           type: "text",
                           text: "Email",
                           columnId: "a3381c4f-c114-4580-a7bd-e7f3e8978562",
-
+                          
                           value: null,
                         },
                         {
                           type: "text",
                           text: "Title",
                           columnId: "f2b9eb5b-b47b-4d62-86e3-4ec3f07c5c82",
-
+                          
                           value: null,
                         },
                         {
                           type: "text",
                           text: "Role",
                           columnId: "78a5a972-335e-4fa5-921b-48ae27bd7c86",
-
+                          
                           value: null,
                         },
                         {
