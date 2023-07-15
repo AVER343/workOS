@@ -25,10 +25,8 @@ export const InitiativeSlice = createSlice({
   reducers: {
     getAllInitiatives(state) {
       state.initiatives = DB_INSTANCE.initiative.adapter.read();
-      console.trace("hello");
     },
     createInitiative(state, action) {
-      console.trace("CREATE");
       let initiatives = DB_INSTANCE.initiative.adapter.read();
       state.initiatives = [...initiatives, action.payload];
       DB_INSTANCE.initiative.adapter.write(state.initiatives);
@@ -46,7 +44,6 @@ export const InitiativeSlice = createSlice({
         );
         projects.splice(project_index, 1);
         initiative_data.splice(index, 1);
-        console.log({ initiative_data, projects });
         state.initiatives = [...initiative_data];
         DB_INSTANCE.initiative.adapter.write([...initiative_data]);
         DB_INSTANCE.projects.adapter.write([...projects]);
@@ -58,7 +55,6 @@ export const InitiativeSlice = createSlice({
         const intiative = initiatives.findIndex(
           (initiative) => initiative.id == action.payload.id
         );
-        console.log({ initiatives, intiative });
         if (intiative >= 0) {
           initiatives[intiative] = action.payload;
           state.initiatives = [...initiatives];

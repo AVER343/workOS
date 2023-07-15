@@ -9,9 +9,10 @@ import {
 } from "../../redux/projects";
 import { AppState } from "../../redux/store";
 import { I_ProjectModel } from "../../utils/db/interfaces";
-import { Button } from "@nextui-org/react";
+import { Button, Row } from "@nextui-org/react";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
+import { Text } from "@nextui-org/react";
 import EditProjectModal from "../../component/modal/projects/project-edit.modal";
 function ProjectContainer() {
   const router = useRouter();
@@ -32,7 +33,22 @@ function ProjectContainer() {
   }, [router.asPath]);
   return (
     <>
-      <CreateProject handleCreate={handleCreate} router={router} />
+      <Row justify="center">
+        <Text
+          h1
+          size={60}
+          css={{
+            textGradient: "45deg, $blue600 -20%, $pink600 50%",
+          }}
+          weight="bold"
+          style={{ width: "210px" }}
+        >
+          Projects
+        </Text>
+      </Row>
+      <Row>
+        <CreateProject handleCreate={handleCreate} router={router} />
+      </Row>
 
       <ProjectListComponent
         onSave={handleEdit}
@@ -77,7 +93,8 @@ function CreateProject({
           setIsModalOpen(true);
         }}
       >
-        CREATE NEW
+        <span className="material-icons">add_circle</span>
+        Create New Project
       </Button>
     </>
   );

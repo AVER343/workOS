@@ -1,5 +1,5 @@
-import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react"
-import React, { useState } from "react";
+import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react";
+import React, { useEffect, useRef, useState } from "react";
 import { I_InitiativesModel } from "../../../utils/db/interfaces";
 import { ModalFormComponent } from "../common_modals/forms/form";
 import EditModal from "../common_modals/edit.modal";
@@ -26,19 +26,26 @@ function EditinitiativeModal({
     },
   ];
   let [initiativeData, setInitiativeData] = useState({ ...initiative });
+  const initiativeDataRef = useRef(initiativeData);
+  useEffect(() => {
+    initiativeDataRef.current = initiativeData;
+  }, [initiativeData]);
+  const _onEdit = () => {
+    let new_project_data = { ...initiative, ...initiativeDataRef.current };
+    onEdit(new_project_data);
+    onClose();
+  };
   return (
     <>
       {isModalOpen && (
         <EditModal
-          heading={isNew ? `Create new Initiative` : `Update an existing Initiative`}
+          heading={
+            isNew ? `Create new Initiative` : `Update an existing Initiative`
+          }
           isModalOpen={isModalOpen}
           onClose={async () => onClose()}
           isNew={isNew}
-          onSave={() => {
-            let new_project_data = { ...initiative, ...initiativeData };
-            onEdit(new_project_data);
-            onClose();
-          }}
+          onSave={_onEdit}
           subheading={
             isNew
               ? "Create a new initiative by providing the following details."

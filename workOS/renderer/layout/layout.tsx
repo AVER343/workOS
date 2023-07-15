@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Row, Spacer, Switch, useTheme } from "@nextui-org/react";
+import {
+  Button,
+  Container,
+  Row,
+  Text,
+  Spacer,
+  Switch,
+  useTheme,
+} from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 function LayoutComponent({ children, ...props }) {
   const router = useRouter();
   const route = router;
-  console.log({ children, props });
   return (
     <Container
       style={{ maxWidth: "100vw" }}
@@ -15,12 +22,13 @@ function LayoutComponent({ children, ...props }) {
         padding: "$12",
       }}
     >
-      <Row css={{ justifyContent: 'flex-end' }}>
+      <Row css={{ justifyContent: "flex-end" }}>
         {props.parentUrl && (
           <>
-            <Row css={{ justifyContent: 'space-between' }}>
+            <Row css={{}}>
               <Button
-                light
+                color="gradient"
+                bordered
                 onPress={() => route.push(props.parentUrl)}
                 iconLeftCss={{ justifyContent: "center" }}
                 icon={
@@ -35,22 +43,18 @@ function LayoutComponent({ children, ...props }) {
           </>
         )}
         <Button
-          light
-          onPress={() => route.push('/members')}
-          icon={
-            <span className="material-icons">
-              account_box
-            </span>
-          }
+          color="gradient"
+          bordered
+          onPress={() => route.push("/members")}
+          icon={<span className="material-icons">account_box</span>}
         >
           Members
         </Button>
       </Row>
       <Spacer />
-      < motion.div
-        initial={{ x: 30, opacity: 0 }
-        }
-        animate={{ x:0, opacity: 1 }}
+      <motion.div
+        initial={{ x: 30, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         exit={{ x: 30, opacity: 0 }}
         transition={{
           type: "spring",

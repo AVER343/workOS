@@ -6,7 +6,6 @@ import { FaChevronCircleRight } from 'react-icons/fa'
 function BreadCrumbComponent(props: { items: { link: string, displayName: string }[] }) {
     const router = useRouter()
     useEffect(() => {
-        console.log(router.asPath);
     }, [router.pathname]);
 
     return (<Breadcrumb spacing='8px' separator={<FaChevronCircleRight />}>

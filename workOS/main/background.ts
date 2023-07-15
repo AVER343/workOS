@@ -22,6 +22,7 @@ app.whenReady().then(() => {
   
   installExtensions();
 });
+
 if (isProd) {
   serve({ directory: 'app' });
 } else {
@@ -50,3 +51,4 @@ if (isProd) {
 app.on('window-all-closed', () => {
   app.quit();
 });
+

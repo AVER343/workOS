@@ -104,7 +104,7 @@ export const solutionsSlice = createSlice({
     editSolution(state, action: { payload: I_SolutionsModel }) {
       let solutions = DB_INSTANCE.solutions.adapter.read();
       let solutionIndex = solutions.findIndex(
-        (solution) => solution.id != action.payload.id
+        (solution) => solution.id == action.payload.id
       );
       solutions[solutionIndex] = action.payload;
       DB_INSTANCE.solutions.adapter.write(solutions);

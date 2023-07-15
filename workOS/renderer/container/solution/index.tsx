@@ -7,7 +7,7 @@ import {
   deleteSolution,
 } from "../../redux/solutions";
 import { AppState } from "../../redux/store";
-import { Button, Grid, Tooltip } from "@nextui-org/react";
+import { Button, Grid, Tooltip, Text, Row } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import {
   I_SolutionTableModel,
@@ -21,7 +21,6 @@ import { DeleteModalComponent } from "../../component/modal/common_modals";
 import EditSolutionModal from "../../component/projects/solution/editSolution.modal";
 import ItemComponent from "../../component/home/item.component";
 import { SolutionItemContainer } from "../../component/projects/solution";
-import SolutionItemComponent from "../../component/solution/solution-item.component";
 import SolutionListComponent from "../../component/solution/solution-list.component";
 import LayoutContainer from "../../layout";
 import { Database } from "../../utils/db";
@@ -48,6 +47,7 @@ function SolutionsContainer() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [seleectIndex, setSelectedIndex] = useState(null);
+  const [isNew, setIsNew] = useState(false);
   useEffect(() => {
     if (typeof router.query.project_id == "string") {
       {
@@ -59,10 +59,26 @@ function SolutionsContainer() {
   const db = new Database().InitiativeModels();
   return (
     <>
-      <LayoutContainer parentUrl={`/initiatives/${db.projects.adapter.read().find((project) => project.id == project_id)
-        .initiative_id
+      <LayoutContainer
+        parentUrl={`/initiatives/${
+          db.projects.adapter.read().find((project) => project.id == project_id)
+            .initiative_id
         }`}
-        parentName={`Project`}>
+        parentName={`Project`}
+      >
+        <Row justify="center">
+          <Text
+            h1
+            size={60}
+            css={{
+              textGradient: "45deg, $blue600 -20%, $pink600 50%",
+            }}
+            style={{ width: "250px" }}
+            weight="bold"
+          >
+            Solutions
+          </Text>
+        </Row>
         {isDeleteModalOpen && (
           <>
             <DeleteModalComponent
@@ -75,195 +91,199 @@ function SolutionsContainer() {
                 setIsDeleteModalOpen(false);
               }}
               isModalOpen={isDeleteModalOpen}
-
-            /></>
-        )}
-        {isModalOpen && (
-          <EditSolutionModal
-            onEdit={(solution) => {
-              let table_id = randomUUID();
-              handleCreate({
-                solution: {
-                  project_id:
-                    typeof router.query.project_id == "string" &&
-                    router.query.project_id,
-                  created_on: new Date().toDateString(),
-                  title: solution.title,
-                  id: randomUUID(),
-                  overvew: solution.overvew,
-                  table_id: [table_id],
-                },
-                solutionTable: {
-                  table_id,
-                  columns: [
-                    {
-                      id: "64e82fff-bd45-4560-b9f1-a7ed25d62da6",
-                      columnId: "64e82fff-bd45-4560-b9f1-a7ed25d62da6",
-                      width: 150,
-                      resizable: true,
-                      reorderable: true,
-                    },
-                    {
-                      id: "7822ef87-68a1-46ef-9c52-684bce887bf3",
-                      columnId: "7822ef87-68a1-46ef-9c52-684bce887bf3",
-                      resizable: true,
-                      reorderable: true,
-                      width: 75,
-                    },
-                    {
-                      id: "a3381c4f-c114-4580-a7bd-e7f3e8978562",
-                      columnId: "a3381c4f-c114-4580-a7bd-e7f3e8978562",
-                      resizable: true,
-                      reorderable: true,
-                      width: 150,
-                    },
-                    {
-                      id: "f2b9eb5b-b47b-4d62-86e3-4ec3f07c5c82",
-                      columnId: "f2b9eb5b-b47b-4d62-86e3-4ec3f07c5c82",
-                      resizable: true,
-                      reorderable: true,
-                      width: 75,
-                    },
-                    {
-                      id: "78a5a972-335e-4fa5-921b-48ae27bd7c86",
-                      columnId: "78a5a972-335e-4fa5-921b-48ae27bd7c86",
-                      resizable: true,
-                      reorderable: true,
-                      width: 75,
-                    },
-                    {
-                      id: "3516ee84-3e57-4b3b-bf9a-04815eb641e3",
-                      columnId: "3516ee84-3e57-4b3b-bf9a-04815eb641e3",
-                      resizable: true,
-                      reorderable: true,
-                      width: 120,
-                    },
-                    {
-                      id: "f24a7a79-ef7c fg-44f0-99f5-9535faaf3026",
-                      columnId: "f24a7a79-ef7c-44f0-99f5-9535faaf3026",
-                      resizable: true,
-                      reorderable: true,
-                      width: 250,
-                    },
-                    {
-                      id: "d24a7a79-ef7c-44f0-99f5-9535faaf3026",
-                      columnId: "d24a7a79-ef7c-44f0-99f5-9535faaf3026",
-                      resizable: true,
-                      reorderable: true,
-                      width: 200,
-                    },
-                    {
-                      id: "55de7f45-a2a1-4b69-ac0e-d067f7364a6d",
-                      columnId: "55de7f45-a2a1-4b69-ac0e-d067f7364a6d",
-                      resizable: true,
-                      reorderable: true,
-                      width: 50,
-                    },
-                    {
-                      id: "45de7f45-a2a1-4b69-ac0e-d067f7364a6d",
-                      columnId: "45de7f45-a2a1-4b69-ac0e-d067f7364a6d",
-                      resizable: true,
-                      reorderable: true,
-                      width: 50,
-                    },
-                  ],
-                  rows: [
-                    {
-                      rowId: "topHeader",
-                      cells: [
-                        {
-                          type: "text",
-                          text: "",
-                          columnId: "64e82fff-bd45-4560-b9f1-a7ed25d62da6",
-                        },
-                        {
-                          type: "text",
-                          text: "Name",
-                          columnId: "7822ef87-68a1-46ef-9c52-684bce887bf3",
-                          
-                          value: null,
-                        },
-                        {
-                          type: "text",
-                          text: "Email",
-                          columnId: "a3381c4f-c114-4580-a7bd-e7f3e8978562",
-                          
-                          value: null,
-                        },
-                        {
-                          type: "text",
-                          text: "Title",
-                          columnId: "f2b9eb5b-b47b-4d62-86e3-4ec3f07c5c82",
-                          
-                          value: null,
-                        },
-                        {
-                          type: "text",
-                          text: "Role",
-                          columnId: "78a5a972-335e-4fa5-921b-48ae27bd7c86",
-                          
-                          value: null,
-                        },
-                        {
-                          type: "text",
-                          text: "Cost to Company(Per hour)",
-                          columnId: "f24a7a79-ef7c-44f0-99f5-9535faaf3026",
-
-                          value: "0",
-                        },
-                        {
-                          type: "text",
-                          text: "Total Cost To Customer",
-                          columnId: "3516ee84-3e57-4b3b-bf9a-04815eb641e3",
-
-                          value: "0",
-                        },
-
-                        {
-                          type: "text",
-                          text: "Total Cost to Company",
-                          columnId: "d24a7a79-ef7c-44f0-99f5-9535faaf3026",
-
-                          value: "",
-                        },
-                        {
-                          type: "text",
-                          text: "Total Hours",
-                          columnId: "55de7f45-a2a1-4b69-ac0e-d067f7364a6d",
-
-                          value: "",
-                        },
-                        {
-                          type: "text",
-                          text: "Profit",
-                          columnId: "45de7f45-a2a1-4b69-ac0e-d067f7364a6d",
-                          value: "0",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              });
-            }}
-            solutionData={JSON.parse(JSON.stringify({}))}
-            onClose={async () => setIsModalOpen(false)}
-            isNew={true}
-          />
+            />
+          </>
         )}
         {isEditModalOpen && (
           <EditSolutionModal
-            onEdit={(solution) => { }}
-            solutionData={JSON.parse(JSON.stringify({}))}
-            onClose={async () => setIsModalOpen(false)}
-            isNew={true}
+            onEdit={(solution) => {
+              if (isNew) {
+                let table_id = randomUUID();
+                handleCreate({
+                  solution: {
+                    project_id:
+                      typeof router.query.project_id == "string" &&
+                      router.query.project_id,
+                    created_on: new Date().toDateString(),
+                    title: solution.title,
+                    id: randomUUID(),
+                    overvew: solution.overvew,
+                    table_id: [table_id],
+                  },
+                  solutionTable: {
+                    table_id,
+                    columns: [
+                      {
+                        id: "64e82fff-bd45-4560-b9f1-a7ed25d62da6",
+                        columnId: "64e82fff-bd45-4560-b9f1-a7ed25d62da6",
+                        width: 150,
+                        resizable: true,
+                        reorderable: true,
+                      },
+                      {
+                        id: "7822ef87-68a1-46ef-9c52-684bce887bf3",
+                        columnId: "7822ef87-68a1-46ef-9c52-684bce887bf3",
+                        resizable: true,
+                        reorderable: true,
+                        width: 75,
+                      },
+                      {
+                        id: "a3381c4f-c114-4580-a7bd-e7f3e8978562",
+                        columnId: "a3381c4f-c114-4580-a7bd-e7f3e8978562",
+                        resizable: true,
+                        reorderable: true,
+                        width: 150,
+                      },
+                      {
+                        id: "f2b9eb5b-b47b-4d62-86e3-4ec3f07c5c82",
+                        columnId: "f2b9eb5b-b47b-4d62-86e3-4ec3f07c5c82",
+                        resizable: true,
+                        reorderable: true,
+                        width: 75,
+                      },
+                      {
+                        id: "78a5a972-335e-4fa5-921b-48ae27bd7c86",
+                        columnId: "78a5a972-335e-4fa5-921b-48ae27bd7c86",
+                        resizable: true,
+                        reorderable: true,
+                        width: 75,
+                      },
+                      {
+                        id: "3516ee84-3e57-4b3b-bf9a-04815eb641e3",
+                        columnId: "3516ee84-3e57-4b3b-bf9a-04815eb641e3",
+                        resizable: true,
+                        reorderable: true,
+                        width: 120,
+                      },
+                      {
+                        id: "f24a7a79-ef7c fg-44f0-99f5-9535faaf3026",
+                        columnId: "f24a7a79-ef7c-44f0-99f5-9535faaf3026",
+                        resizable: true,
+                        reorderable: true,
+                        width: 250,
+                      },
+                      {
+                        id: "d24a7a79-ef7c-44f0-99f5-9535faaf3026",
+                        columnId: "d24a7a79-ef7c-44f0-99f5-9535faaf3026",
+                        resizable: true,
+                        reorderable: true,
+                        width: 200,
+                      },
+                      {
+                        id: "55de7f45-a2a1-4b69-ac0e-d067f7364a6d",
+                        columnId: "55de7f45-a2a1-4b69-ac0e-d067f7364a6d",
+                        resizable: true,
+                        reorderable: true,
+                        width: 150,
+                      },
+                      {
+                        id: "45de7f45-a2a1-4b69-ac0e-d067f7364a6d",
+                        columnId: "45de7f45-a2a1-4b69-ac0e-d067f7364a6d",
+                        resizable: true,
+                        reorderable: true,
+                        width: 150,
+                      },
+                    ],
+                    rows: [
+                      {
+                        rowId: "topHeader",
+                        cells: [
+                          {
+                            type: "text",
+                            text: "",
+                            columnId: "64e82fff-bd45-4560-b9f1-a7ed25d62da6",
+                          },
+                          {
+                            type: "text",
+                            text: "Name",
+                            columnId: "7822ef87-68a1-46ef-9c52-684bce887bf3",
+
+                            value: null,
+                          },
+                          {
+                            type: "text",
+                            text: "Email",
+                            columnId: "a3381c4f-c114-4580-a7bd-e7f3e8978562",
+
+                            value: null,
+                          },
+                          {
+                            type: "text",
+                            text: "Title",
+                            columnId: "f2b9eb5b-b47b-4d62-86e3-4ec3f07c5c82",
+
+                            value: null,
+                          },
+                          {
+                            type: "text",
+                            text: "Role",
+                            columnId: "78a5a972-335e-4fa5-921b-48ae27bd7c86",
+
+                            value: null,
+                          },
+                          {
+                            type: "text",
+                            text: "Cost to Company(Per hour)",
+                            columnId: "f24a7a79-ef7c-44f0-99f5-9535faaf3026",
+
+                            value: "0",
+                          },
+                          {
+                            type: "text",
+                            text: "Total Cost To Customer",
+                            columnId: "3516ee84-3e57-4b3b-bf9a-04815eb641e3",
+
+                            value: "0",
+                          },
+
+                          {
+                            type: "text",
+                            text: "Total Cost to Company",
+                            columnId: "d24a7a79-ef7c-44f0-99f5-9535faaf3026",
+
+                            value: "",
+                          },
+                          {
+                            type: "text",
+                            text: "Total Hours",
+                            columnId: "55de7f45-a2a1-4b69-ac0e-d067f7364a6d",
+
+                            value: "",
+                          },
+                          {
+                            type: "text",
+                            text: "Profit",
+                            columnId: "45de7f45-a2a1-4b69-ac0e-d067f7364a6d",
+                            value: "0",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                });
+              } else {
+                console.log(seleectIndex, solution);
+                onSave(solution);
+              }
+              setIsEditModalOpen(false);
+              setIsNew(false);
+            }}
+            solutionData={
+              isNew ? JSON.parse(JSON.stringify({})) : solutions[seleectIndex]
+            }
+            onClose={async () => setIsEditModalOpen(false)}
+            isNew={isNew}
           />
         )}
+
         <Button
           onPress={() => {
-            setIsModalOpen(true);
+            setIsEditModalOpen(true);
+            setIsNew(true);
           }}
         >
-          Create
+          <span className="material-icons">add_circle</span>
+          Create New Solution
         </Button>
         <SolutionListComponent
           onSave={onSave}
@@ -274,11 +294,9 @@ function SolutionsContainer() {
           isDeleteModalOpen={isDeleteModalOpen}
           setIsDeleteModalOpen={setIsDeleteModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}
-          isEditModalOpen={isEditModalOpen}
         />
       </LayoutContainer>
     </>
-
   );
 }
 

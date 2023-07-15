@@ -1,5 +1,5 @@
 import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { I_ProjectModel } from "../../../utils/db/interfaces";
 import { ModalFormComponent } from "../common_modals/forms/form";
 import EditModal from "../common_modals/edit.modal";
@@ -43,14 +43,18 @@ function EditProjectModal({
     },
   ];
   let [projectData, setprojectData] = useState({ ...project });
-
+  const projectDataRef = useRef(projectData);
+  useEffect(() => {
+    projectDataRef.current = projectData;
+  }, [projectData]);
+  const _onSave = () => {
+    onSave({ ...project, ...projectDataRef.current });
+    onClose();
+  };
   return (
     isModalOpen && (
       <EditModal
-        onSave={() => {
-          onSave({ ...project, ...projectData });
-          onClose();
-        }}
+        onSave={_onSave}
         heading={isNew ? `Create new project` : `Update an existing Project`}
         isModalOpen={isModalOpen}
         onClose={async () => onClose()}

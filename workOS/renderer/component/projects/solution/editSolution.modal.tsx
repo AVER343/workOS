@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ModalFormComponent } from "../../modal/common_modals/forms/form";
 import EditModal from "../../modal/common_modals/edit.modal";
 import { I_SolutionsModel } from "../../../utils/db/interfaces";
@@ -31,6 +31,15 @@ function EditSolutionModal({
     },
   ];
   const [data, setData] = useState(JSON.parse(JSON.stringify(solutionData)));
+  const dataRef = useRef(data);
+  useEffect(() => {
+    dataRef.current = data;
+  }, [data]);
+  const _onEdit = () => {
+    let new_project_data = { ...data, ...dataRef.current };
+    onEdit(new_project_data);
+    onClose();
+  };
   return (
     <>
       <EditModal
@@ -38,14 +47,11 @@ function EditSolutionModal({
         isModalOpen={true}
         onClose={async () => onClose()}
         isNew={isNew}
-        onSave={() => {
-          onEdit(data);
-          onClose();
-        }}
+        onSave={_onEdit}
         subheading={
           isNew
-            ? "Create a new initiative by providing the following details."
-            : "Update the existing initiative by editing the details here."
+            ? "Create a new solution by providing the following details."
+            : "Update the existing solution by editing the details here."
         }
       >
         <ModalFormComponent

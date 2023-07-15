@@ -35,7 +35,7 @@ export function CreateInitiative(props: {
         }}
       >
         <span className="material-icons">add_circle</span>
-        <Text color="white">New Initiative</Text>
+        <Text color="white">Create New Initiative</Text>
       </Button>
     </>
   );

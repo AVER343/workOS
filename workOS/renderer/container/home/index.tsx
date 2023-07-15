@@ -9,7 +9,7 @@ import {
 } from "../../redux/intiatives";
 import { AppState } from "../../redux/store";
 import { I_InitiativesModel } from "../../utils/db/interfaces";
-import { Button } from "@nextui-org/react"
+import { Button,Text,Row } from "@nextui-org/react"
 import ProjectListComponent from "../../component/projects/project-list.component";
 import { Database } from "../../utils/db";
 import HomeListComponent from "../../component/home/home-list.component";
@@ -35,6 +35,19 @@ function HomeContainer() {
   }
   return (
     <>
+      <Row justify="center">
+        <Text
+          h1
+          size={60}
+          css={{
+            textGradient: "45deg, $blue600 -20%, $pink600 50%",
+          }}
+          style={{ width: "250px" }}
+          weight="bold"
+        >
+          Intiatives
+        </Text>
+      </Row>
       <CreateInitiative onEdit={onEdit} handleCreate={handleCreate} />
       <HomeListComponent
         onEdit={onEdit}

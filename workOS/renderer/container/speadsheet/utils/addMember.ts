@@ -2,6 +2,7 @@ import { randomUUID } from "crypto";
 import { CustomColumn, I_MembersModel } from "../../../utils/db/interfaces";
 import { Row } from "@silevis/reactgrid";
 import {
+  CostToClient_ID,
   CostToCompanyPerHour_ID,
   EmailColumn_ID,
   NameColumn_ID,
@@ -12,14 +13,15 @@ import {
   TotalHours_ID,
 } from "../constants";
 
-export function addMember(
+export async function addMember(
   columns: CustomColumn[],
   props,
   rows: Row[],
   _setColumns: React.Dispatch<React.SetStateAction<CustomColumn[]>>,
   setRows,
   buildTree,
-  member: I_MembersModel
+  member: I_MembersModel,
+  updateOnChange
 ) {
   try {
     let uuid = randomUUID();
@@ -62,9 +64,9 @@ export function addMember(
               type: "text",
               text: member.ctc?.toString() ?? "0",
               className: "",
-            }
+            };
           }
-          if (NameColumn_ID == row['columnId']) {
+          if (NameColumn_ID == row["columnId"]) {
             return {
               type: "text",
               text: member.name?.toString() ?? "",
@@ -75,6 +77,13 @@ export function addMember(
             return {
               type: "text",
               text: member.email?.toString() ?? "",
+              className: "",
+            };
+          }
+          if (CostToClient_ID == row["columnId"]) {
+            return {
+              type: "text",
+              text: member.client_ctc?.toString() ?? "",
               className: "",
             };
           }
@@ -94,7 +103,9 @@ export function addMember(
       ],
       rowId: uuid,
     });
-    setRows(buildTree(JSON.parse(JSON.stringify(newRows))));
+
+    await setRows(buildTree(JSON.parse(JSON.stringify(newRows))));
+    updateOnChange(JSON.parse(JSON.stringify(newRows)), 2);
     return {
       newRows: newRows,
       newColumns: columns,

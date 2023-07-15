@@ -17,20 +17,12 @@ function SolutionListComponent(props: {
   setSelectedIndex: (index: number) => void;
   selectedIndex: number;
   setIsEditModalOpen: any;
-  isEditModalOpen: boolean;
 }) {
   return (
-    <Container
-      style={{ 'padding': '0px' }}
-      css={{ listStyleType: "none" }}
-    >
+    <Container style={{ padding: "0px" }} css={{ listStyleType: "none" }}>
       <Grid.Container gap={4} justify="flex-start">
         {props.solutions.map((solution, index) => (
-          <Grid
-            style={{ minWidth: "350px" }}
-            xs={3}
-            key={solution.id}
-          >
+          <Grid style={{ minWidth: "350px" }} xs={3} key={solution.id}>
             <motion.li
               layout
               // initial={{ scale: 0.8, opacity: 0 }}
@@ -56,6 +48,7 @@ function SolutionListComponent(props: {
               >
                 <SolutionItemComponent
                   solution={solution}
+                  setSolution={() => props.setSelectedIndex(index)}
                   setIsModalOpen={props.setIsEditModalOpen}
                 />
               </CloseBadgeComponent>

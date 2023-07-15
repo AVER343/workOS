@@ -9,4 +9,5 @@ export interface I_MembersModel {
   avatar?: string;
   ctc: string;
   title: string;
+  client_ctc: string | number;
 }

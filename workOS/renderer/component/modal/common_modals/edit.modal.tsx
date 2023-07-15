@@ -1,5 +1,5 @@
-import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react"
-import React, { ReactNode, useState } from "react";
+import { Button, Grid, Modal, Spacer, Text } from "@nextui-org/react";
+import React, { ReactNode, useState, useEffect } from "react";
 import {
   I_InitiativesModel,
   I_ProjectModel,
@@ -24,6 +24,23 @@ function EditModal({
   children: ReactNode;
   subheading: ReactNode;
 }) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Handle keydown event here
+      if (event.key == "Enter") {
+        onSave();
+      }
+    };
+
+    // Attach the event listener
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <>
       <Modal

@@ -7,14 +7,10 @@ import {
   CellChange,
   Id,
 } from "@silevis/reactgrid";
-import {
-  Button,
-  Spacer,
-  Row as Row_Component,
-} from "@nextui-org/react";
+import { Button, Spacer, Row as Row_Component, Col } from "@nextui-org/react";
 import { NonEditableNumberCellTemplate } from "./nonEditableNumber.cell";
 import { getContextMenu } from "./getContextMenu";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   editSolutionTable,
@@ -28,11 +24,14 @@ import {
   CostToCompanyPerHour_ID,
   Profit_ID,
   TotalCostToCompany_ID,
-  TotalHours_ID
+  TotalHours_ID,
 } from "./constants";
 import SelectMemberModal from "./selectMember.modal.component";
 import { addMember } from "./utils/addMember";
 import LayoutContainer from "../../layout";
+import { randomUUID } from "crypto";
+import { createSolution } from "../../redux/solutions";
+import SaveSolutionDataModal from "./modal/save-data.modal";
 
 /* 
   searches for a chevron cell in given row
@@ -115,15 +114,41 @@ export const buildTree = (rows: Row[]): Row[] =>
     return row;
   });
 
-const ChevronCellExample: React.FunctionComponent = () => {
+const SolutionSpreadSheet: React.FunctionComponent = () => {
+  const tableDataRef = useRef(null);
+  const columnRef = useRef(null);
+  const rowRef = useRef(null);
   const ref = useRef();
+  let forcedRef = useRef(null);
   let solutionTable = useSelector(
     (state: AppState) => state.solutionTable.solutionTable
   );
+  useEffect(() => {
+    const handleRouteChange = (...props: any[]): void => {
+      const hasChanged =
+        (rowRef &&
+          columnRef &&
+          JSON.stringify(rowRef.current) !=
+            JSON.stringify(tableDataRef.current.rows)) ||
+        JSON.stringify(columnRef.current) !=
+          JSON.stringify(tableDataRef.current.columns);
+      if (!forcedRef.current) {
+        if (hasChanged) {
+          setVisible(true);
+          throw new Error("Hello");
+        }
+      } else {
+        setVisible(false);
+      }
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => router.events.off("routeChangeStart", handleRouteChange);
+  }, []);
+  let solutions = useSelector((state: AppState) => state.solutions.solutions);
   const _setCreateMemberData = (props) => {
     setCreateMemberData(props);
     setMemberModalVisible(true);
-  }
+  };
   let [tableData, setTableData] = useState<I_SolutionTableModel>(null);
   const [columns, setColumns] = useState([]);
   const [rows, setRows] = useState(() => buildTree([]));
@@ -131,12 +156,27 @@ const ChevronCellExample: React.FunctionComponent = () => {
   const [rowsToRender, setRowsToRender] = useState<Row[]>([
     ...getExpandedRows(rows),
   ]);
+  useEffect(() => {
+    columnRef.current = columns;
+    rowRef.current = rows;
+  }, [rows, columns]);
   const [createMemberData, setCreateMemberData] = useState({});
   const [memberModalVisible, setMemberModalVisible] = useState(false);
   const addMemberFunc = async (member) => {
-    await addMember(columns, createMemberData, rows, setColumns, setRows, buildTree, member)
+    await addMember(
+      columns,
+      createMemberData,
+      rows,
+      setColumns,
+      setRows,
+      buildTree,
+      member,
+      updateOnChange
+    );
     setMemberModalVisible(false);
-  }
+  };
+  let [forcedRouting, setForcedRouting] = useState(false);
+  forcedRef.current = forcedRouting;
   let router = useRouter();
   useEffect(() => {
     setRowsToRender([...getExpandedRows(rows)]);
@@ -150,13 +190,57 @@ const ChevronCellExample: React.FunctionComponent = () => {
     setTableData({ ...solutionTable });
     setColumns([...solutionTable.columns]);
     setRows([...solutionTable.rows]);
-  }, [JSON.stringify(solutionTable)]);
-  const { handleChanges, handleColumnsReorder, handleColumnResize } = getFunctions(rows, columns, setRows, setRowsToRender, setColumns);
+    tableDataRef.current = solutionTable;
+  }, [JSON.stringify(solutionTable), solutionTable]);
+
+  const { handleChanges, handleColumnResize } = getFunctions(
+    rows,
+    columns,
+    setRows,
+    setRowsToRender,
+    setColumns
+  );
+  const [visible, setVisible] = React.useState(false);
+  const closeHandler = () => {
+    setVisible(false);
+    console.log("closed");
+  };
+  const saveHandler = async () => {
+    await setVisible(false);
+    await setForcedRouting(true);
+    dispatch(
+      editSolutionTable({
+        columns,
+        rows,
+        table_id: tableData.table_id,
+      })
+    );
+    router.push(router.asPath.split("/").slice(0, 3).join("/"));
+  };
+  useEffect(() => {
+    forcedRef.current = forcedRouting;
+  }, [forcedRouting]);
   return (
-    <LayoutContainer parentName={'Solution'} parentUrl={router.asPath.split("/").slice(0, 3).join("/")}>
-      {memberModalVisible && <SelectMemberModal
-        addMemberFunc={addMemberFunc}
-        closeHandler={() => setMemberModalVisible(false)} />}
+    <LayoutContainer
+      parentName={"Solution"}
+      parentUrl={router.asPath.split("/").slice(0, 3).join("/")}
+    >
+      <SaveSolutionDataModal
+        discardHandler={async () => {
+          await setForcedRouting(true);
+          await setVisible(false);
+          router.push(router.asPath.split("/").slice(0, 3).join("/"));
+        }}
+        saveHandler={saveHandler}
+        visible={visible}
+        closeHandler={closeHandler}
+      />
+      {memberModalVisible && (
+        <SelectMemberModal
+          addMemberFunc={addMemberFunc}
+          closeHandler={() => setMemberModalVisible(false)}
+        />
+      )}
       <div
         style={{
           overflow: "scroll",
@@ -170,13 +254,10 @@ const ChevronCellExample: React.FunctionComponent = () => {
           stickyLeftColumns={1}
           stickyTopRows={1}
           ref={ref}
-          onColumnsReordered={handleColumnsReorder}
           onColumnResized={handleColumnResize}
           customCellTemplates={{
             nonEditableNumber: NonEditableNumberCellTemplate,
           }}
-          enableRowSelection
-          enableColumnSelection
           onContextMenu={(...props) => {
             return getContextMenu(
               rowsToRender,
@@ -191,37 +272,79 @@ const ChevronCellExample: React.FunctionComponent = () => {
           }}
         />
       </div>
-      <Spacer />
-      <Row_Component justify="flex-end">
-        <Button
-          onPress={() => {
-            dispatch(
-              editSolutionTable({ columns, rows, table_id: tableData.table_id })
-            );
-          }}
-        >
-          Save
-        </Button>
-      </Row_Component>
-    </LayoutContainer >
+      {Array(3).fill(<Spacer />)}
+      <Col>
+        <Row_Component justify="flex-end">
+          <Button
+            onPress={() => {
+              dispatch(
+                editSolutionTable({
+                  columns,
+                  rows,
+                  table_id: tableData.table_id,
+                })
+              );
+            }}
+          >
+            Save
+          </Button>
+        </Row_Component>
+        <Spacer />
+        <Row_Component justify="flex-end">
+          <Button
+            onPress={() => {
+              let table_id = randomUUID();
+              let solution = solutions.find((e) =>
+                e.table_id.includes(tableData.table_id)
+              );
+              dispatch(
+                createSolution({
+                  solutionTable: { ...tableData, table_id },
+                  solution: {
+                    project_id:
+                      typeof router.query.project_id == "string" &&
+                      router.query.project_id,
+                    created_on: new Date().toDateString(),
+                    title: (solution.title || "") + " (Duplicate)",
+                    id: randomUUID(),
+                    overvew: solution.overvew,
+                    table_id: [table_id],
+                  },
+                })
+              );
+            }}
+            color="secondary"
+          >
+            Duplicate
+          </Button>
+        </Row_Component>
+      </Col>
+    </LayoutContainer>
   );
 };
 
-export default ChevronCellExample;
-function getFunctions(rows, columns: any[], setRows, setRowsToRender, setColumns: React.Dispatch<React.SetStateAction<any[]>>) {
+export default SolutionSpreadSheet;
+function getFunctions(
+  rows,
+  columns: any[],
+  setRows,
+  setRowsToRender,
+  setColumns: React.Dispatch<React.SetStateAction<any[]>>
+) {
   const handleChanges = async (changes: CellChange[]) => {
     const newRows = JSON.parse(JSON.stringify(rows));
     let headerRowId = rows[0].rowId;
-    if (headerRowId == changes[0].rowId &&
-      changes[0].newCell["isExpanded"] != changes[0].previousCell["isExpanded"]) {
+    if (
+      headerRowId == changes[0].rowId &&
+      changes[0].newCell["isExpanded"] != changes[0].previousCell["isExpanded"]
+    ) {
       changes.forEach((change) => {
         const changeColumnIdx = columns.findIndex(
           (el) => el.columnId === change.columnId
         );
         newRows[0].cells[changeColumnIdx] = change.newCell;
       });
-    }
-    else
+    } else
       changes.forEach((change) => {
         const changeRowIdx = rows.findIndex((el) => el.rowId === change.rowId);
         const changeColumnIdx = columns.findIndex(
@@ -247,9 +370,10 @@ function getFunctions(rows, columns: any[], setRows, setRowsToRender, setColumns
   };
   const reorderArray = <T extends {}>(arr: T[], idxs: number[], to: number) => {
     const movedElements = arr.filter((_, idx) => idxs.includes(idx));
-    const targetIdx = Math.min(...idxs) < to
-      ? (to += 1)
-      : (to -= idxs.filter((idx) => idx < to).length);
+    const targetIdx =
+      Math.min(...idxs) < to
+        ? (to += 1)
+        : (to -= idxs.filter((idx) => idx < to).length);
     const leftSide = arr.filter(
       (_, idx) => idx < targetIdx && !idxs.includes(idx)
     );
@@ -262,7 +386,8 @@ function getFunctions(rows, columns: any[], setRows, setRowsToRender, setColumns
     const to = columns.findIndex(
       (column) => column.columnId === targetColumnId
     );
-    const columnIdxs = columnIds.map((columnId) => columns.findIndex((c) => c.columnId === columnId)
+    const columnIdxs = columnIds.map((columnId) =>
+      columns.findIndex((c) => c.columnId === columnId)
     );
     setColumns((prevColumns) => reorderArray(prevColumns, columnIdxs, to));
   };
@@ -317,18 +442,22 @@ function updateOnChange(newRows: any, changeRowIdx: number) {
     }
   }
   let i = nearestTeamIndex + 1;
-  while (newRows[i].cells[0].parentId) {
+  while (i < newRows.length && newRows[i].cells[0].parentId) {
     teamObject.totalTeamCost =
       teamObject.totalTeamCost +
       parseFloat(newRows[i].cells[columnTotalCost].value);
     teamObject.totalTeamHours =
       teamObject.totalTeamHours +
       parseFloat(newRows[i].cells[columnTotalHours].value);
-    let tCTC = !isNaN(parseFloat(newRows[i].cells[columnCostToClient].value) *
-      parseFloat(newRows[i].cells[columnTotalHours].value)) ? parseFloat(newRows[i].cells[columnCostToClient].value) *
-    parseFloat(newRows[i].cells[columnTotalHours].value) : 0;
-    teamObject.totalCostToClient =
-      teamObject.totalCostToClient + tCTC;
+
+    let tCTC = !isNaN(
+      parseFloat(newRows[i].cells[columnCostToClient].text) *
+        parseFloat(newRows[i].cells[columnTotalHours].value)
+    )
+      ? parseFloat(newRows[i].cells[columnCostToClient].text) *
+        parseFloat(newRows[i].cells[columnTotalHours].value)
+      : 0;
+    teamObject.totalCostToClient = teamObject.totalCostToClient + tCTC;
     i++;
     if (!newRows[i]) break;
   }

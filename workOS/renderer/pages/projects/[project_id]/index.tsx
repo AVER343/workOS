@@ -10,7 +10,8 @@ const ProjectPage: NextPage = (props: { parentUrl: string }) => {
     { ssr: false }
   );
   return (
-      <React.Fragment>
+    <React.Fragment>
+      
         <DynamicSolutionContainer />
       </React.Fragment>
   );

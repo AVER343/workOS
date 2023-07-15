@@ -2,10 +2,14 @@ import {
   screen,
   BrowserWindow,
   BrowserWindowConstructorOptions,
+  globalShortcut,
 } from "electron";
+import os from "os";
+import mkdirp from "mkdirp";
 import Store from "electron-store";
 import { Database } from "../../renderer/utils/db";
-
+import path from "node:path";
+import fs from "node:fs";
 export default (
   windowName: string,
   options: BrowserWindowConstructorOptions
@@ -82,6 +86,7 @@ export default (
     },
   };
   win = new BrowserWindow(browserOptions);
+
   win.webContents.on("before-input-event", (event, input) => {
     // Check for keyboard shortcuts that trigger a refresh
     if (
@@ -91,6 +96,15 @@ export default (
       event.preventDefault(); // Prevent the default refresh behavior
     }
   });
+
+  const shortcut = globalShortcut.register("CmdOrCtrl + ;", () => {
+    win.show();
+  });
+
+  if (!shortcut) {
+    console.log("Registration failed.");
+  }
+
   win.on("close", saveState);
 
   return win;

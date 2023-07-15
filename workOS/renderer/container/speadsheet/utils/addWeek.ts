@@ -6,6 +6,7 @@ import {
   TotalHours_ID,
 } from "../constants";
 import { ClassNames } from "@emotion/react";
+import { Console } from "console";
 
 export function addToRight(
   columns: CustomColumn[],
@@ -16,27 +17,42 @@ export function addToRight(
   buildTree
 ) {
   let uuid = randomUUID();
-  columns.splice(
-    columns.findIndex((column) => column.columnId == props[4][0][0].columnId) +
-      1,
-    0,
-    { columnId: uuid, id: uuid, width: 50, resizable: true, reorderable: true }
+  let columnIdx = columns.findIndex(
+    (column) => column.columnId == props[4][0][0].columnId
   );
+  columns.splice(columnIdx + 1, 0, {
+    columnId: uuid,
+    id: uuid,
+    width: 75,
+    resizable: true,
+  });
   let newRows: any[] = JSON.parse(JSON.stringify(rows)).map((row, index) => {
     let text = "";
     let className = "";
     if (index == 0) {
-      text = "Week";
-      className = "";
+      //10 constant columns
+      text = "Week-" + (columnIdx - 8);
+      className = "week";
     }
     let _index = columns.findIndex(
       (column) => column.columnId == props[4][0][0].columnId
     );
-    let cell: any = row.cells[0].className == "team" && {
-      type: "nonEditableNumber",
-      value: "",
-      className: "disabled",
-    };
+    let cell: any =
+      row.cells[0].className == "team"
+        ? {
+            type: "nonEditableNumber",
+            value: "",
+            className: "disabled",
+          }
+        : {
+            type: "text",
+            text: text,
+            hasChildren: false,
+            isExpanded: false,
+            columnId: uuid,
+            value: null,
+            className: className,
+          };
     if (index == 0) {
       cell = {
         type: "text",
@@ -45,11 +61,19 @@ export function addToRight(
         isExpanded: false,
         columnId: uuid,
         value: null,
-        className: "",
+        className: className,
       };
     }
     row.cells.splice(_index + 1, 0, cell);
-
+    if (cell.className == "week") {
+      columns = columns.map((value, idx) => {
+        if (idx > columnIdx + 1) {
+          row.cells[idx].text =
+            "Week-" + (parseInt(row.cells[idx]?.text.split("-")[1]) + 1);
+        }
+        return value;
+      });
+    }
     return {
       ...row,
       cells: [...row.cells],
