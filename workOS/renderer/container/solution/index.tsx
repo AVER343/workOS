@@ -43,7 +43,6 @@ function SolutionsContainer() {
   const onDelete = (data: I_SolutionsModel) => {
     dispatch(deleteSolution(data));
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [seleectIndex, setSelectedIndex] = useState(null);
@@ -259,10 +258,10 @@ function SolutionsContainer() {
                         ],
                       },
                     ],
+                    phases: [],
                   },
                 });
               } else {
-                console.log(seleectIndex, solution);
                 onSave(solution);
               }
               setIsEditModalOpen(false);

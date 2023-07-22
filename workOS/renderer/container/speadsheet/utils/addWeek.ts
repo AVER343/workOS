@@ -1,12 +1,5 @@
 import { randomUUID } from "crypto";
 import { CustomColumn } from "../../../utils/db/interfaces";
-import {
-  CostToCompanyPerHour_ID,
-  TotalCostToCompany_ID,
-  TotalHours_ID,
-} from "../constants";
-import { ClassNames } from "@emotion/react";
-import { Console } from "console";
 
 export function addToRight(
   columns: CustomColumn[],
@@ -30,7 +23,7 @@ export function addToRight(
     let text = "";
     let className = "";
     if (index == 0) {
-      //10 constant columns
+      //9 constant columns
       text = "Week-" + (columnIdx - 8);
       className = "week";
     }

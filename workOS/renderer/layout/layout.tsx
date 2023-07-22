@@ -7,12 +7,17 @@ import {
   Spacer,
   Switch,
   useTheme,
+  Loading
 } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 function LayoutComponent({ children, ...props }) {
   const router = useRouter();
   const route = router;
+  const [child, setChildren] = useState(null);
+  useEffect(() => {
+    setChildren(children);
+  }, [children]);
   return (
     <Container
       style={{ maxWidth: "100vw" }}
@@ -62,7 +67,7 @@ function LayoutComponent({ children, ...props }) {
           damping: 20,
         }}
       >
-        {children}
+        {child}
       </motion.div>
     </Container>
   );

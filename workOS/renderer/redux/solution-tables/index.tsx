@@ -25,6 +25,7 @@ const initialState: solutionTable = {
     columns: [],
     rows: [],
     table_id: randomUUID(),
+    phases: { data: [], list: [] },
   },
 };
 
@@ -38,11 +39,11 @@ export const solutionTableSlice = createSlice({
       let index = solutionTables.findIndex(
         (table) => table.table_id == action.payload.table_id
       );
-        
-          if (index == -1) {
-              index = solutionTables.length;
-              solutionTables.push(action.payload);
-          }
+
+      if (index == -1) {
+        index = solutionTables.length;
+        solutionTables.push(action.payload);
+      }
       solutionTables[index] = action.payload;
       DB_INSTANCE.solutionTable.adapter.write(solutionTables);
       state.solutionTable = action.payload;

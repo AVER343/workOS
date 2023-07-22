@@ -1,10 +1,14 @@
-import { CustomColumn, I_MembersModel } from "../../utils/db/interfaces";
+import {
+  CustomColumn,
+  I_MembersModel,
+  PhasesData,
+} from "../../utils/db/interfaces";
 import { addMember } from "./utils/addMember";
 import { addTeam } from "./utils/addTeam";
 import { addToRight } from "./utils/addWeek";
 import { buildTree, getExpandedRows } from ".";
 import { deleteColumn } from "./utils/deleteColumn";
-import { CellLocation, Id, MenuOption } from "@silevis/reactgrid";
+import { CellLocation, Id, MenuOption, Row } from "@silevis/reactgrid";
 import {
   CONST_COLUMN_IDS,
   CostToClient_ID,
@@ -18,16 +22,21 @@ import {
   TotalHours_ID,
 } from "./constants";
 import { deleteRow } from "./utils/deleteRow";
+import { randomUUID } from "crypto";
 
 export function getContextMenu(
   rowsToRender,
   props,
   columns: CustomColumn[],
   rows,
+  phases: any[],
   setColumns: React.Dispatch<React.SetStateAction<CustomColumn[]>>,
   setRows,
   setRowsToRender,
-  setCreateMemberData
+  setCreateMemberData,
+  setPhases: (data: PhasesData[]) => void,
+  phraseData,
+  setPhraseData
 ) {
   let onClickMenu = [];
   if (!props[4][0]) return [];
@@ -42,7 +51,31 @@ export function getContextMenu(
           setRows,
           buildTree
         );
-        setRowsToRender([...getExpandedRows(newRows)]);
+        let weekIdx = columns.findIndex(
+          (column) => column.columnId == props[4]?.[0]?.[0]?.columnId
+        );
+        // get week not added and replace the rest with new text
+        setPhraseData([
+          ...phraseData,
+          {
+            created_on: new Date(),
+            id: randomUUID(),
+            name: "Default",
+            week: newRows[0].cells[weekIdx + 1].text,
+          },
+        ]);
+        const new_phases = [
+          ...phases,
+          {
+            name: "Default",
+            disabled: false,
+          },
+        ].filter(
+          (obj, index, self) =>
+            index === self.findIndex((o: PhasesData) => o.name === obj.name)
+        );
+        setPhases(new_phases);
+        await setRowsToRender([...getExpandedRows(newRows)]);
       },
       id: "addToWeek",
       label: "Add Week",
