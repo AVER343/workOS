@@ -1,8 +1,6 @@
-import { Badge } from "@nextui-org/react"
+import style from "./close.module.scss";
 import React, { ReactNode } from "react";
-import ScaleWrapper from "../wrapper/scale";
-import { randomUUID } from "crypto";
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 export function CloseBadgeComponent(props: {
   id: string;
   children: ReactNode;
@@ -13,32 +11,29 @@ export function CloseBadgeComponent(props: {
 }) {
   return (
     <motion.div
+      style={{ position: "relative" }}
       whileHover={{ scale: 1, rotate: 0 }}
       whileTap={{
         scale: 1,
         rotate: 0,
-        borderRadius: "100%"
+        borderRadius: "100%",
       }}
     >
-      <Badge
-        style={{
-          top: `calc(${props.topPercent ?? 5}% + var(--nextui--badgePlacementVOffset))`,
-          right: `calc(${props.rightPercent ?? 3}% + var(--nextui--badgePlacementVOffset))`,
-          userSelect: "none",
-          cursor: "pointer",
-          backgroundColor: "red",
-          width: "25px",
-          height: "25px",
-        }}
-        className="close-badge"
-        key={props.id}
-        content={props.content}
-        color="error"
-        onClick={props.onPress}
-        placement="top-right"
-        size="md"
-      >
-        {props.children}
-      </Badge></motion.div>
+      <div className={style.close} onClick={props.onPress}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <svg viewBox="0 0 36 36" className={style.circle}>
+          <path
+            strokeDasharray="100, 100"
+            d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+        </svg>
+      </div>
+      {props.children}
+    </motion.div>
   );
 }

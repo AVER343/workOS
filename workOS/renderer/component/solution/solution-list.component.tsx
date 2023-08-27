@@ -19,13 +19,16 @@ function SolutionListComponent(props: {
   setIsEditModalOpen: any;
 }) {
   return (
-    <Container style={{ padding: "0px" }} css={{ listStyleType: "none" }}>
+    <Container
+      style={{ padding: "0px" }}
+      css={{ overflowY: "scroll", listStyleType: "none" }}
+    >
       <Grid.Container gap={4} justify="flex-start">
         {props.solutions.map((solution, index) => (
           <Grid style={{ minWidth: "350px" }} xs={3} key={solution.id}>
             <motion.li
               layout
-              // initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", delay: 0.2 }}

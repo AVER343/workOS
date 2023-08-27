@@ -14,7 +14,7 @@ function HomeListComponent(props: {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <Grid.Container gap={3} justify="flex-start">
+    <Grid.Container gap={3} style={{ overflowY: "scroll" }} justify="flex-start">
       {isModalOpen && (
         <DeleteModalComponent
           isModalOpen={isModalOpen}

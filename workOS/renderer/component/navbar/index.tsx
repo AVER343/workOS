@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout } from "./layout";
-import { Navbar, Button, Text, Tooltip } from "@nextui-org/react"
+import { Navbar, Button, Text, Tooltip } from "@nextui-org/react";
 import Link from "next/link";
 import { HeartIcon } from "./home-icon.component";
 import { useRouter } from "next/router";
@@ -10,7 +10,7 @@ function NavbarComponent() {
   const router = useRouter();
   return (
     <Layout>
-      <Navbar isBordered={isDark} variant="sticky">
+      <Navbar isBordered={isDark} variant={"floating"}>
         <Navbar.Brand>
           <Text b color="inherit" hideIn="xs">
             <Tooltip

@@ -13,3 +13,6 @@
 .rg-nonEditableNumber-cell.disabled {
   background-color: #ededed;
 }
+.body {
+  overflowy: !important scroll;
+}

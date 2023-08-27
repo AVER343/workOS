@@ -9,7 +9,7 @@ import {
   Spacer,
   Grid,
 } from "@nextui-org/react";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import {
   I_InitiativesModel,
   I_ProjectModel,
@@ -29,6 +29,10 @@ export function DeleteModalComponent({
   isModalOpen: boolean;
   initiative: I_InitiativesModel | I_ProjectModel | I_SolutionsModel;
 }) {
+  const onClose_ = () => {
+    onClose();
+    document.getElementsByTagName("body")[0].style.overflow = "";
+  };
   return (
     <>
       <Modal
@@ -36,7 +40,7 @@ export function DeleteModalComponent({
         blur
         aria-labelledby="modal-title"
         open={isModalOpen}
-        onClose={onClose}
+        onClose={onClose_}
       >
         <div id="myModal" className="modal fade">
           <div className="modal-dialog modal-confirm">
@@ -58,7 +62,7 @@ export function DeleteModalComponent({
               <Spacer />
               <Grid.Container justify="center">
                 <Grid xs={4}>
-                  <Button size={"sm"} ghost color="default" onClick={onClose}>
+                  <Button size={"sm"} ghost color="default" onClick={onClose_}>
                     Cancel
                   </Button>
                 </Grid>
@@ -69,7 +73,7 @@ export function DeleteModalComponent({
                     color="error"
                     size={"sm"}
                     onClick={() => {
-                      onDelete(initiative)
+                      onDelete(initiative);
                     }}
                   >
                     Delete
