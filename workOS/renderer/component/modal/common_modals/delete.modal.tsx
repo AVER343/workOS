@@ -29,10 +29,11 @@ export function DeleteModalComponent({
   isModalOpen: boolean;
   initiative: I_InitiativesModel | I_ProjectModel | I_SolutionsModel;
 }) {
-  const onClose_ = () => {
-    onClose();
-    document.getElementsByTagName("body")[0].style.overflow = "";
-  };
+  useEffect(() => {
+    return () => {
+      document.getElementsByTagName("body")[0].style.overflow = "";
+    };
+  }, [isModalOpen]);
   return (
     <>
       <Modal
@@ -40,7 +41,7 @@ export function DeleteModalComponent({
         blur
         aria-labelledby="modal-title"
         open={isModalOpen}
-        onClose={onClose_}
+        onClose={onClose}
       >
         <div id="myModal" className="modal fade">
           <div className="modal-dialog modal-confirm">
@@ -62,7 +63,7 @@ export function DeleteModalComponent({
               <Spacer />
               <Grid.Container justify="center">
                 <Grid xs={4}>
-                  <Button size={"sm"} ghost color="default" onClick={onClose_}>
+                  <Button size={"sm"} ghost color="default" onClick={onClose}>
                     Cancel
                   </Button>
                 </Grid>

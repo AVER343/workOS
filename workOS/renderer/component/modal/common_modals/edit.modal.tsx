@@ -40,10 +40,9 @@ function EditModal({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-  const onClose_ = () => {
-    onClose();
-    document.getElementsByTagName("body")[0].style.overflow = "";
-  };
+  useEffect(() => {
+   return ()=>{ document.getElementsByTagName("body")[0].style.overflow = ""};
+  }, [isModalOpen]);
   return (
     <>
       <Modal
@@ -51,7 +50,7 @@ function EditModal({
         blur
         aria-labelledby="modal-title"
         open={isModalOpen}
-        onClose={onClose_}
+        onClose={onClose}
         style={{ overflow: "scroll" }}
       >
         <div id="myModal" className="modal fade">
@@ -65,7 +64,7 @@ function EditModal({
               <Spacer />
               {children}
               <ButtonContainer
-                onClose={onClose_}
+                onClose={onClose}
                 isNew={isNew}
                 onSave={onSave}
               />
