@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { I_ProjectModel } from "../../utils/db/interfaces";
 import { CloseBadgeComponent } from "../badge/close";
 import { DeleteModalComponent } from "../modal/common_modals";
+import { Spacer } from "@chakra-ui/react";
 function ProjectListComponent(props: {
   projects: I_ProjectModel[];
   deleteProject: any;
@@ -14,7 +15,11 @@ function ProjectListComponent(props: {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Container
-      css={{ overflowY: "scroll", listStyleType: "none", padding: "0px" }}
+      css={{
+        listStyleType: "none",
+        paddingLeft: "24px",
+        paddingRight: "24px",
+      }}
     >
       {isModalOpen && (
         <DeleteModalComponent
@@ -29,16 +34,22 @@ function ProjectListComponent(props: {
           initiative={props.projects[selectedIndex]}
         />
       )}
-      <Grid.Container gap={2} style={{ overflowY: "scroll" }}>
+      <Spacer />
+      <Spacer />
+      <Grid.Container
+        gap={4}
+        className="card-container"
+        justify="flex-start"
+        css={{
+          listStyleType: "none",
+          paddingLeft: "24px",
+          paddingRight: "24px",
+        }}
+      >
         {props.projects.map((project, index) => (
-          <Grid
-            style={{ minWidth: "350px", marginTop: "15px" }}
-            xs={3}
-            key={project.id}
-          >
+          <Grid key={project.id} css={{ listStyleType: "none" }}>
             <motion.li
               layout
-              // initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", delay: 0.2 }}
@@ -47,7 +58,7 @@ function ProjectListComponent(props: {
               <CloseBadgeComponent
                 key={project.id}
                 id={project.id}
-                topPercent={0}
+                topPercent={10}
                 rightPercent={0}
                 content={
                   <Tooltip enterDelay={300} color={"error"} content={"Delete"}>

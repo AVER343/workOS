@@ -22,17 +22,12 @@ function ItemComponent(props: { initiative: I_InitiativesModel; onEdit: any }) {
       <Card
         variant="shadow"
         isPressable
+        className="card-item"
         isHoverable
         onPress={() => {
           router.push(`/initiatives/${props.initiative.id}`);
         }}
-        css={{
-          width: "300px",
-          height: "200px",
-          minHeight: "200px",
-          mw: "330px",
-          minWidth: "stretch",
-        }}
+        style={{ maxHeight: "300px" }}
       >
         <Card.Header>
           <Text b>
@@ -41,19 +36,18 @@ function ItemComponent(props: { initiative: I_InitiativesModel; onEdit: any }) {
         </Card.Header>
         <Card.Divider />
         <Card.Body>
-          <Text>
+          <Text css={{ height: "200px" }}>
             {props.initiative.description
-              ? `${
-                  props.initiative.description.length > displayLetters
-                    ? props.initiative.description.slice(0, displayLetters) +
-                      " ..."
-                    : props.initiative.description
-                }`
+              ? `${props.initiative.description}`
               : ""}
           </Text>
         </Card.Body>
+        <Spacer />
+
         <Card.Divider />
         <Card.Footer>
+          <Spacer />
+
           <Row justify="flex-end">
             <Button
               color={"secondary"}

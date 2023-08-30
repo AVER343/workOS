@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ReactGrid, Column, ChevronCell, Row } from "@silevis/reactgrid";
 import { Button, Spacer, Row as Row_Component, Col } from "@nextui-org/react";
+import { useTheme as useNextTheme } from "next-themes";
 import { NonEditableNumberCellTemplate } from "./nonEditableNumber.cell";
 import { getContextMenu } from "./getContextMenu";
 import Router, { useRouter } from "next/router";
@@ -107,6 +108,10 @@ const SolutionSpreadSheet: React.FunctionComponent = () => {
   const rowRef = useRef(null);
   const ref = useRef();
   let forcedRef = useRef(null);
+  const { setTheme } = useNextTheme();
+  useEffect(() => {
+    setTheme('light');
+  }, []);
   let solutionTable = useSelector(
     (state: AppState) => state.solutionTable.solutionTable
   );
@@ -141,7 +146,6 @@ const SolutionSpreadSheet: React.FunctionComponent = () => {
   forcedRef.current = forcedRouting;
   let router = useRouter();
   const [visible, setVisible] = React.useState(false);
-  const [phasingModal, setPhasingModal] = useState(false);
 
   const { handleChanges, handleColumnResize } = getFunctions(
     rows,
@@ -178,7 +182,7 @@ const SolutionSpreadSheet: React.FunctionComponent = () => {
   useEffects();
   return (
     <>
-      <EditPhasing
+      {/* <EditPhasing
         data={JSON.parse(JSON.stringify(tableData))}
         phases={JSON.parse(JSON.stringify(phases))}
         phaseData={JSON.parse(JSON.stringify(phaseData))}
@@ -186,7 +190,7 @@ const SolutionSpreadSheet: React.FunctionComponent = () => {
         visible={phasingModal}
         setData={setTableData}
       />
-      <Spacer />
+      <Spacer /> */}
       <SaveSolutionDataModal
         discardHandler={async () => {
           await setForcedRouting(true);

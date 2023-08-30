@@ -20,12 +20,11 @@ function SolutionListComponent(props: {
 }) {
   return (
     <Container
-      style={{ padding: "0px" }}
-      css={{ overflowY: "scroll", listStyleType: "none" }}
+      css={{ listStyleType: "none", paddingLeft: "24px", paddingRight: "24px" }}
     >
-      <Grid.Container gap={4} justify="flex-start">
+      <Grid.Container className="card-container" gap={3} justify="flex-start">
         {props.solutions.map((solution, index) => (
-          <Grid style={{ minWidth: "350px" }} xs={3} key={solution.id}>
+          <Grid css={{ listStyleType: "none" }} key={solution.id}>
             <motion.li
               layout
               initial={{ scale: 0.8, opacity: 0 }}

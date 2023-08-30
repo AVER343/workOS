@@ -3,7 +3,12 @@ import { wrapper } from "../redux/store";
 import { Database } from "../utils/db";
 import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
-import { Navbar, NextUIProvider, createTheme } from "@nextui-org/react";
+import {
+  Navbar,
+  NextUIProvider,
+  createTheme,
+  useTheme,
+} from "@nextui-org/react";
 import NavbarComponent from "../component/navbar";
 
 import "../styles/global.css";
@@ -29,9 +34,18 @@ function App({ Component, pageProps }: AppProps) {
     <AnimatePresence>
       <div className="progress"></div>
       <AnimatePresence mode="wait" initial={false}>
-        <NextUIProvider>
-          <Component {...pageProps} />
-        </NextUIProvider>
+        <NextThemesProvider
+          defaultTheme="system"
+          attribute="class"
+          value={{
+            light: lightTheme.className,
+            dark: darkTheme.className,
+          }}
+        >
+          <NextUIProvider>
+            <Component {...pageProps} />
+          </NextUIProvider>
+        </NextThemesProvider>
       </AnimatePresence>
     </AnimatePresence>
   );

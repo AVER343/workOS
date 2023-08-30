@@ -7,7 +7,7 @@ import {
   deleteSolution,
 } from "../../redux/solutions";
 import { AppState } from "../../redux/store";
-import { Button, Grid, Tooltip, Text, Row } from "@nextui-org/react";
+import { Button, Grid, Tooltip, Text, Row, Spacer } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import {
   I_SolutionTableModel,
@@ -284,6 +284,8 @@ function SolutionsContainer() {
           <span className="material-icons">add_circle</span>
           Create New Solution
         </Button>
+        <Spacer />
+        <Spacer />
         <SolutionListComponent
           onSave={onSave}
           selectedIndex={seleectIndex}

@@ -1,4 +1,12 @@
-import { Avatar, Badge, Button, Card, Grid, Tooltip } from "@nextui-org/react";
+import {
+  Avatar,
+  Badge,
+  Text,
+  Button,
+  Card,
+  Grid,
+  Tooltip,
+} from "@nextui-org/react";
 import React, { useState } from "react";
 import { I_InitiativesModel } from "../../utils/db/interfaces";
 import ItemComponent from "./item.component";
@@ -14,7 +22,7 @@ function HomeListComponent(props: {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <Grid.Container gap={3} style={{ overflowY: "scroll" }} justify="flex-start">
+    <>
       {isModalOpen && (
         <DeleteModalComponent
           isModalOpen={isModalOpen}
@@ -28,37 +36,41 @@ function HomeListComponent(props: {
           initiative={props.initiatives[selectedIndex]}
         />
       )}
-      {props.initiatives.map((initiative, index) => (
-        <Grid css={{ listStyleType: "none" }} key={initiative.id}>
-          <motion.li
-            layout
-            // initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: "spring", delay: 0.2 }}
-            key={initiative.id}
-          >
-            <CloseBadgeComponent
-              topPercent={0}
-              rightPercent={0}
+      <Grid.Container
+        gap={1}
+        className="card-container"
+        justify="flex-start"
+        css={{
+          listStyleType: "none",
+        }}
+      >
+        {props.initiatives.map((initiative, index) => (
+          <Grid css={{ listStyleType: "none" }} key={initiative.id}>
+            <motion.li
+              layout
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", delay: 0.2 }}
               key={initiative.id}
-              id={initiative.id}
-              content={
-                <Tooltip enterDelay={300} color={"error"} content={"Delete"}>
-                  X
-                </Tooltip>
-              }
-              onPress={() => {
-                setSelectedIndex(index);
-                setIsModalOpen(true);
-              }}
             >
-              <ItemComponent onEdit={props.onEdit} initiative={initiative} />
-            </CloseBadgeComponent>
-          </motion.li>
-        </Grid>
-      ))}
-    </Grid.Container>
+              <CloseBadgeComponent
+                topPercent={100}
+                rightPercent={`calc`}
+                key={initiative.id}
+                id={initiative.id}
+                content={<Text>X</Text>}
+                onPress={() => {
+                  setSelectedIndex(index);
+                  setIsModalOpen(true);
+                }}
+              >
+                <ItemComponent onEdit={props.onEdit} initiative={initiative} />
+              </CloseBadgeComponent>
+            </motion.li>
+          </Grid>
+        ))}
+      </Grid.Container>
+    </>
   );
 }
 

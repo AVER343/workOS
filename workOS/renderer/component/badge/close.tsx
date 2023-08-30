@@ -6,8 +6,8 @@ export function CloseBadgeComponent(props: {
   children: ReactNode;
   onPress: () => void;
   content: ReactNode;
-  topPercent?: number;
-  rightPercent?: number;
+  topPercent?: number | string;
+  rightPercent?: number | string;
 }) {
   return (
     <motion.div

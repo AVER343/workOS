@@ -9,7 +9,7 @@ import {
 } from "../../redux/projects";
 import { AppState } from "../../redux/store";
 import { I_ProjectModel } from "../../utils/db/interfaces";
-import { Button, Row } from "@nextui-org/react";
+import { Button, Col, Row,Spacer } from "@nextui-org/react";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import { Text } from "@nextui-org/react";
@@ -46,10 +46,13 @@ function ProjectContainer() {
           Projects
         </Text>
       </Row>
-      <Row>
-        <CreateProject handleCreate={handleCreate} router={router} />
-      </Row>
-
+      <Col>
+        <Row>
+          <CreateProject handleCreate={handleCreate} router={router} />
+        </Row>
+        <Spacer />
+        <Spacer />
+      </Col>
       <ProjectListComponent
         onSave={handleEdit}
         deleteProject={handleDelete}

@@ -97,7 +97,7 @@ export function EditPhaseModal(props: {
             isHoverable
             style={{ backgroundColor: index == 0 ? "Highlight" : "Background" }}
             variant="bordered"
-            css={{ mw: "400px", borderRadius: "0", width: "50vw" }}
+            css={{ mw: "350px", borderRadius: "0", width: "50vw" }}
           >
             <Card.Body>
               <Row justify="center">Edit</Row>

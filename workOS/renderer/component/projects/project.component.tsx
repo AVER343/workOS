@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+import { Card, Grid, Spacer, Col, Row, Button, Text } from "@nextui-org/react";
 import { I_ProjectModel } from "../../utils/db/interfaces";
 import EditModal from "../modal/common_modals/edit.modal";
 import { ModalFormComponent } from "../modal/common_modals/forms/form";
@@ -14,7 +14,7 @@ function ProjectComponent(props: {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   return (
-    <>
+    <Grid>
       {isModalOpen && (
         <EditProjectModal
           isNew={false}
@@ -28,15 +28,10 @@ function ProjectComponent(props: {
         variant="shadow"
         isPressable
         isHoverable
+        style={{ maxHeight: "300px", padding: "0px" }}
+        className="card-item"
         onPress={() => {
           router.push(`/projects/${props.project.id}`);
-        }}
-        css={{
-          width: "300px",
-          height: "200px",
-          minHeight: "200px",
-          mw: "330px",
-          minWidth: "stretch",
         }}
       >
         <Card.Header>
@@ -48,17 +43,17 @@ function ProjectComponent(props: {
         </Card.Header>
         <Card.Divider />
         <Card.Body>
-          <Text>
+          <Text css={{ height: "200px" }}>
             {props.project.project_description
-              ? `${
-                  props.project.project_description.length > 92
-                    ? props.project.project_description.slice(0, 92) + " ..."
-                    : props.project.project_description
-                }`
+              ? `${props.project.project_description}`
               : "Some quick example text to build on the card title and make up the bulk of the card's content."}
           </Text>
         </Card.Body>
+        <Spacer />
+
         <Card.Divider />
+        <Spacer />
+
         <Card.Footer>
           <Row justify="flex-end">
             <Button
@@ -72,7 +67,7 @@ function ProjectComponent(props: {
           </Row>
         </Card.Footer>
       </Card>
-    </>
+    </Grid>
   );
 }
 
