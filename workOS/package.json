@@ -1,16 +1,37 @@
 {
   "private": true,
-  "name": "my-nextron-app",
-  "description": "My application description",
+  "name": "work-os",
+  "description": "WorkOS",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "Ankush Verma <ankushvermagb@gmail.com>",
   "main": "app/background.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aver343/workOS.git"
+  },
   "scripts": {
     "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
     "dev": "nextron",
     "build": "nextron build",
     "postinstall": "electron-builder install-app-deps"
   },
+  "build": {
+    "appId": "com.workos.king",
+    "productName": "WorkOS",
+    "copyright": "Copyright © 2023",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "type": "distribution"
+    },
+    "publish": [
+      "github"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/aver343/workOS/issues"
+  },
+  "homepage": "https://github.com/aver343/workOS#readme",
+  "keywords": [],
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.6.1",
@@ -27,6 +48,7 @@
     "electron-devtools-installer": "^2.2.4",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
+    "electron-updater": "^6.1.1",
     "framer-motion": "^10.12.16",
     "fs": "^0.0.1-security",
     "heroicons": "^2.0.18",
